@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 
-export default function CardInsurance({ id, title, description, icon, benefits, color = "#4a6fa5" }) {
+export default function CardInsurance({ id, title, description, icon, benefits, color = "#FEBE17" }) {
   const cardRef = useRef(null);
 
   const onMouseMove = (e) => {
@@ -21,12 +21,12 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
   return (
     <div
       ref={cardRef}
-      className="group relative overflow-hidden bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+      className="group relative overflow-hidden bg-base-100 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
       style={{
         '--card-color': color,
         background: `radial-gradient(
           800px circle at var(--mouse-x) var(--mouse-y),
-          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.05),
           transparent 40%
         )`,
       }}
@@ -51,11 +51,11 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
           </h3>
         </div>
         
-        <p className="text-gray-600 mb-6">{description}</p>
+        <p className="text-neutral-200 mb-6">{description}</p>
         
         {benefits && benefits.length > 0 && (
           <div className="mt-auto mb-6">
-            <h4 className="font-semibold text-gray-800 mb-2">Beneficios:</h4>
+            <h4 className="font-semibold text-neutral-200 mb-2">Beneficios:</h4>
             <ul className="space-y-2">
               {benefits.map((benefit, index) => (
                 <li key={index} className="flex items-start">
@@ -71,7 +71,7 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-gray-600">{benefit}</span>
+                  <span className="text-neutral-300">{benefit}</span>
                 </li>
               ))}
             </ul>
@@ -80,7 +80,7 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
 
         <div className="mt-auto flex justify-between items-center">
           <div
-            className="relative h-[3px] w-1/3 overflow-hidden bg-gray-200 rounded-full"
+            className="relative h-[3px] w-1/3 overflow-hidden bg-neutral rounded-full"
           >
             <div
               className="absolute top-0 left-0 h-full w-0 group-hover:w-full transition-all duration-700"

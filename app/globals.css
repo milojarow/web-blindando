@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --foreground-rgb: 33, 37, 41;
-  --background-start-rgb: 244, 247, 255;
-  --background-end-rgb: 242, 245, 252;
+  --foreground-rgb: 39, 21, 12;
+  --background-start-rgb: 9, 11, 10;
+  --background-end-rgb: 14, 14, 14;
 }
 
 @theme inline {
@@ -38,7 +38,7 @@ body {
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, #4a6fa5 0%, #7698cb 100%);
+  background: linear-gradient(135deg, #090B0A 0%, #0E0E0E 100%);
 }
 
 /* Loading animation */
@@ -59,7 +59,7 @@ body {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #4a6fa5;
+  background: #FEBE17;
   margin: -4px 0 0 -4px;
 }
 .loading-spinner div:nth-child(1) {

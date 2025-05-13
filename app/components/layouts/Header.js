@@ -24,7 +24,7 @@ export default function Header() {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        isScrolled ? 'bg-base-100 shadow-md py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -38,7 +38,7 @@ export default function Header() {
             className="h-10 w-auto"
           />
           <span className={`text-xl font-bold transition-all ${
-            isScrolled ? 'text-primary' : 'text-white'
+            isScrolled ? 'text-primary' : 'text-neutral-200'
           }`}>
             Blindando Sueños
           </span>
@@ -55,7 +55,7 @@ export default function Header() {
             viewBox="0 0 24 24" 
             stroke="currentColor" 
             className={`w-6 h-6 transition-all ${
-              isScrolled ? 'text-primary' : 'text-white'
+              isScrolled ? 'text-primary' : 'text-neutral-200'
             }`}
           >
             <path 
@@ -71,32 +71,32 @@ export default function Header() {
         <nav className={`hidden lg:flex items-center gap-6`}>
           <Link 
             href="/#inicio" 
-            className={`font-medium transition-all hover:text-accent ${
-              isScrolled ? 'text-gray-700' : 'text-white'
+            className={`font-medium transition-all hover:text-secondary ${
+              isScrolled ? 'text-neutral-200' : 'text-neutral-200'
             }`}
           >
             Inicio
           </Link>
           <Link 
             href="/#seguros" 
-            className={`font-medium transition-all hover:text-accent ${
-              isScrolled ? 'text-gray-700' : 'text-white'
+            className={`font-medium transition-all hover:text-secondary ${
+              isScrolled ? 'text-neutral-200' : 'text-neutral-200'
             }`}
           >
             Seguros
           </Link>
           <Link 
             href="/#nosotros" 
-            className={`font-medium transition-all hover:text-accent ${
-              isScrolled ? 'text-gray-700' : 'text-white'
+            className={`font-medium transition-all hover:text-secondary ${
+              isScrolled ? 'text-neutral-200' : 'text-neutral-200'
             }`}
           >
             Nosotros
           </Link>
           <Link 
             href="/#contacto" 
-            className={`font-medium transition-all hover:text-accent ${
-              isScrolled ? 'text-gray-700' : 'text-white'
+            className={`font-medium transition-all hover:text-secondary ${
+              isScrolled ? 'text-neutral-200' : 'text-neutral-200'
             }`}
           >
             Contacto
@@ -105,8 +105,8 @@ export default function Header() {
             href="/login" 
             className={`ml-4 px-6 py-2 rounded-full font-medium transition-all
               ${isScrolled 
-                ? 'bg-primary text-white hover:bg-primary/90' 
-                : 'bg-white text-primary hover:bg-white/90'
+                ? 'bg-primary text-text-dark hover:bg-primary/90' 
+                : 'bg-primary text-text-dark hover:bg-primary/90'
               } shadow-md hover:shadow-lg`}
           >
             Iniciar Sesión
@@ -115,7 +115,7 @@ export default function Header() {
 
         {/* Mobile Navigation Overlay */}
         {isMenuOpen && (
-          <div className="fixed inset-0 bg-primary bg-opacity-95 z-50 lg:hidden flex flex-col items-center justify-center">
+          <div className="fixed inset-0 bg-base-100 bg-opacity-95 z-50 lg:hidden flex flex-col items-center justify-center">
             <button 
               className="absolute top-6 right-6" 
               onClick={() => setIsMenuOpen(false)}
@@ -125,7 +125,7 @@ export default function Header() {
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor" 
-                className="w-8 h-8 text-white"
+                className="w-8 h-8 text-neutral-200"
               >
                 <path 
                   strokeLinecap="round" 
@@ -138,35 +138,35 @@ export default function Header() {
             <nav className="flex flex-col items-center gap-8">
               <Link 
                 href="/#inicio" 
-                className="text-white text-xl font-medium"
+                className="text-neutral-200 text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Inicio
               </Link>
               <Link 
                 href="/#seguros" 
-                className="text-white text-xl font-medium"
+                className="text-neutral-200 text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Seguros
               </Link>
               <Link 
                 href="/#nosotros" 
-                className="text-white text-xl font-medium"
+                className="text-neutral-200 text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Nosotros
               </Link>
               <Link 
                 href="/#contacto" 
-                className="text-white text-xl font-medium"
+                className="text-neutral-200 text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contacto
               </Link>
               <Link 
                 href="/login" 
-                className="mt-4 px-8 py-3 bg-white text-primary rounded-full font-medium shadow-md"
+                className="mt-4 px-8 py-3 bg-primary text-text-dark rounded-full font-medium shadow-md"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Iniciar Sesión

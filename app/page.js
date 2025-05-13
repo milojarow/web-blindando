@@ -81,9 +81,9 @@ export default function Home() {
       {/* Hero Section */}
       <section 
         id="inicio" 
-        className="hero-gradient text-white pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden"
+        className="hero-gradient text-neutral-200 pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[#4a6fa5] opacity-90 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#090B0A] to-[#0E0E0E] opacity-90 z-0"></div>
         <div 
           className="absolute inset-0 z-0 opacity-30" 
           style={{ 
@@ -96,21 +96,21 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Protegemos lo que más valoras. <span className="text-accent">¿Tu tranquilidad?</span> Es nuestra prioridad.
+              Protegemos lo que más valoras. <span className="text-secondary">¿Tu tranquilidad?</span> Es nuestra prioridad.
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8">
-              En Blindando Sueños, no solo ofrecemos pólizas: creamos protección personalizada para que puedas vivir plenamente, sin preocupaciones.
+            <p className="text-xl md:text-2xl text-neutral-200/90 mb-8">
+              En Blindando Sueños, no solo ofrecemos pólizas: creamos <span className="text-secondary">protección personalizada</span> para que puedas vivir plenamente, sin preocupaciones.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link 
                 href="#seguros" 
-                className="px-8 py-3 rounded-full bg-white text-primary font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                className="px-8 py-3 rounded-full bg-primary text-text-dark font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
               >
                 Nuestros Seguros
               </Link>
               <Link 
                 href="#contacto" 
-                className="px-8 py-3 rounded-full bg-accent text-white font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                className="px-8 py-3 rounded-full bg-secondary text-neutral-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
               >
                 Contactar Asesor
               </Link>
@@ -128,8 +128,8 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
               Nuestros Seguros
             </h2>
-            <p className="text-gray-600">
-              Ofrecemos una amplia gama de seguros diseñados para proteger lo que más te importa. Cada plan puede personalizarse según tus necesidades específicas.
+            <p className="text-neutral-200">
+              Ofrecemos una amplia gama de seguros diseñados para proteger lo que más te importa. Cada plan puede <span className="text-secondary">personalizarse</span> según tus necesidades específicas.
             </p>
           </div>
           
@@ -143,7 +143,7 @@ export default function Home() {
                   description={product.description}
                   icon={product.icon}
                   benefits={product.benefits}
-                  color={product.color}
+                  color={product.id === 'seguro-de-vida' ? '#FEBE17' : product.id === 'seguro-medico' ? '#55A803' : product.color}
                 />
               ))}
             </div>
