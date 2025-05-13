@@ -82,7 +82,7 @@ export default function Home() {
       {/* Hero Section */}
       <section 
         id="inicio" 
-        className="hero-gradient text-text-light pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden"
+        className="hero-gradient text-text-dark pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden"
       >
         <div 
           className="absolute inset-0 z-0 opacity-30" 
@@ -95,17 +95,17 @@ export default function Home() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-[#212121]">
               Protegemos lo que más valoras. <span className="text-primary">¿Tu tranquilidad?</span> Es nuestra prioridad.
             </h1>
-            <p className="text-xl md:text-2xl text-text-light mb-8">
+            <p className="text-xl md:text-2xl text-[#333333] mb-8">
               En Blindando Sueños, no solo ofrecemos pólizas: creamos <span className="text-primary">protección personalizada</span> para que puedas vivir plenamente, sin preocupaciones.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button href="#seguros" variant="primary">
+              <Button href="#seguros" variant="heroYellow">
                 Nuestros Seguros
               </Button>
-              <Button href="#contacto" variant="secondary">
+              <Button href="#contacto" variant="heroOutline">
                 Contactar Asesor
               </Button>
             </div>
@@ -146,7 +146,7 @@ export default function Home() {
       </section>
       
       {/* About Us Section */}
-      <section id="nosotros" className="py-20 bg-base-300">
+      <section id="nosotros" className="py-20 bg-[#424242]">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
