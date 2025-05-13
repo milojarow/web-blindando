@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import Header from '@/components/layouts/Header';
+import Header from '../../components/layouts/Header';
 
 // Insurance product data
 const insuranceProducts = {
