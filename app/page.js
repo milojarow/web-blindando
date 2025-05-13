@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Header from '@/app/components/layouts/Header';
-import CardInsurance from '@/app/components/cards/CardInsurance';
-import LoadingSpinner from '@/app/components/layouts/LoadingSpinner';
+import Header from '@/components/layouts/Header';
+import CardInsurance from '@/components/cards/CardInsurance';
+import LoadingSpinner from '@/components/layouts/LoadingSpinner';
 
 const insuranceProducts = [
   {

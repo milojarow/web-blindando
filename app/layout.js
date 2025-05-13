@@ -1,6 +1,6 @@
 import './globals.css';
 import { Suspense } from 'react';
-import LoadingSpinner from '@/app/components/layouts/LoadingSpinner';
+import LoadingSpinner from '@/components/layouts/LoadingSpinner';
 
 export const metadata = {
   title: 'Blindando Sueños | Seguros para proteger lo que más importa',
