@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import Button from '../buttons/Button';
 
-export default function CardInsurance({ id, title, description, icon, benefits, color = "#FFB5A7" }) {
+export default function CardInsurance({ id, title, description, icon, benefits, color = "#FFC107" }) {
   const cardRef = useRef(null);
 
   const onMouseMove = (e) => {
@@ -22,12 +22,12 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
   return (
     <div
       ref={cardRef}
-      className="group relative overflow-hidden bg-base-100 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+      className="group relative overflow-hidden bg-base-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral"
       style={{
         '--card-color': color,
         background: `radial-gradient(
           800px circle at var(--mouse-x) var(--mouse-y),
-          rgba(255, 255, 255, 0.8),
+          rgba(255, 255, 255, 0.1),
           transparent 40%
         )`,
       }}
@@ -79,12 +79,12 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
           </div>
         )}
 
-        <div className="mt-auto flex justify-end">
+        <div className="mt-auto text-center">
           <Button 
             href={`/seguros/${id}`} 
             variant="primary"
-            className="text-sm px-4 py-2"
-            style={{ backgroundColor: color }}
+            className="w-full"
+            style={{ backgroundColor: color, borderColor: color }}
           >
             Ver detalles
             <svg
@@ -116,28 +116,28 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
               ${color}55 50%,
               ${color}00 100%
             )
-            top / 100% 1px no-repeat,
+            top / 100% 2px no-repeat,
             linear-gradient(
               to bottom,
               ${color}00 0%,
               ${color}55 50%,
               ${color}00 100%
             )
-            right / 1px 100% no-repeat,
+            right / 2px 100% no-repeat,
             linear-gradient(
               to left,
               ${color}00 0%,
               ${color}55 50%,
               ${color}00 100%
             )
-            bottom / 100% 1px no-repeat,
+            bottom / 100% 2px no-repeat,
             linear-gradient(
               to top,
               ${color}00 0%,
               ${color}55 50%,
               ${color}00 100%
             )
-            left / 1px 100% no-repeat
+            left / 2px 100% no-repeat
           `
         }}
       />

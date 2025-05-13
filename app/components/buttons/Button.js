@@ -12,15 +12,16 @@ export default function Button({
   disabled = false,
   fullWidth = false
 }) {
-  const baseStyles = "px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-opacity-50";
+  const baseStyles = "px-6 py-3 rounded-md font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg focus:outline-none border-2";
   
   const variantStyles = {
-    primary: "bg-primary text-gray-800 hover:bg-primary/90 focus:ring-primary/50",
-    secondary: "bg-secondary text-white hover:bg-secondary/90 focus:ring-secondary/50"
+    primary: "bg-primary border-primary text-text-dark hover:bg-primary-600 focus:ring-2 focus:ring-primary focus:ring-opacity-50",
+    secondary: "bg-secondary border-secondary text-text-light hover:bg-secondary-700 focus:ring-2 focus:ring-secondary focus:ring-opacity-50"
   };
   
   const widthClass = fullWidth ? 'w-full' : '';
-  const buttonClasses = `${baseStyles} ${variantStyles[variant]} ${widthClass} ${className}`;
+  const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : '';
+  const buttonClasses = `${baseStyles} ${variantStyles[variant]} ${widthClass} ${disabledClass} ${className}`;
   
   if (href) {
     return (

@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-base-100 shadow-md py-2' : 'bg-transparent py-4'
+        isScrolled ? 'bg-base-300 shadow-lg py-2' : 'bg-secondary py-4'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -38,9 +38,7 @@ export default function Header() {
             height={50} 
             className="h-10 w-auto"
           />
-          <span className={`text-xl font-bold transition-all ${
-            isScrolled ? 'text-primary' : 'text-text-dark'
-          }`}>
+          <span className="text-xl font-bold text-text-light">
             Blindando Sueños
           </span>
         </Link>
@@ -55,9 +53,7 @@ export default function Header() {
             fill="none" 
             viewBox="0 0 24 24" 
             stroke="currentColor" 
-            className={`w-6 h-6 transition-all ${
-              isScrolled ? 'text-primary' : 'text-text-dark'
-            }`}
+            className="w-6 h-6 text-text-light"
           >
             <path 
               strokeLinecap="round" 
@@ -69,47 +65,39 @@ export default function Header() {
         </button>
 
         {/* Desktop Navigation */}
-        <nav className={`hidden lg:flex items-center gap-6`}>
+        <nav className="hidden lg:flex items-center gap-6">
           <Link 
             href="/#inicio" 
-            className={`font-medium transition-all hover:text-secondary ${
-              isScrolled ? 'text-text-dark' : 'text-text-dark'
-            }`}
+            className="font-medium text-text-light hover:text-primary transition-colors"
           >
             Inicio
           </Link>
           <Link 
             href="/#seguros" 
-            className={`font-medium transition-all hover:text-secondary ${
-              isScrolled ? 'text-text-dark' : 'text-text-dark'
-            }`}
+            className="font-medium text-text-light hover:text-primary transition-colors"
           >
             Seguros
           </Link>
           <Link 
             href="/#nosotros" 
-            className={`font-medium transition-all hover:text-secondary ${
-              isScrolled ? 'text-text-dark' : 'text-text-dark'
-            }`}
+            className="font-medium text-text-light hover:text-primary transition-colors"
           >
             Nosotros
           </Link>
           <Link 
             href="/#contacto" 
-            className={`font-medium transition-all hover:text-secondary ${
-              isScrolled ? 'text-text-dark' : 'text-text-dark'
-            }`}
+            className="font-medium text-text-light hover:text-primary transition-colors"
           >
             Contacto
           </Link>
-          <Button href="/login" variant="primary" className="ml-4 py-2">
+          <Button href="/login" variant="primary" className="ml-4">
             Iniciar Sesión
           </Button>
         </nav>
 
         {/* Mobile Navigation Overlay */}
         {isMenuOpen && (
-          <div className="fixed inset-0 bg-base-100 bg-opacity-95 z-50 lg:hidden flex flex-col items-center justify-center">
+          <div className="fixed inset-0 bg-base-300 z-50 lg:hidden flex flex-col items-center justify-center">
             <button 
               className="absolute top-6 right-6" 
               onClick={() => setIsMenuOpen(false)}
@@ -119,7 +107,7 @@ export default function Header() {
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor" 
-                className="w-8 h-8 text-text-dark"
+                className="w-8 h-8 text-text-light"
               >
                 <path 
                   strokeLinecap="round" 
@@ -132,28 +120,28 @@ export default function Header() {
             <nav className="flex flex-col items-center gap-8">
               <Link 
                 href="/#inicio" 
-                className="text-text-dark text-xl font-medium"
+                className="text-text-light text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Inicio
               </Link>
               <Link 
                 href="/#seguros" 
-                className="text-text-dark text-xl font-medium"
+                className="text-text-light text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Seguros
               </Link>
               <Link 
                 href="/#nosotros" 
-                className="text-text-dark text-xl font-medium"
+                className="text-text-light text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Nosotros
               </Link>
               <Link 
                 href="/#contacto" 
-                className="text-text-dark text-xl font-medium"
+                className="text-text-light text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contacto
