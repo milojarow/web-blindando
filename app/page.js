@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Header from './components/layouts/Header';
 import CardInsurance from './components/cards/CardInsurance';
 import LoadingSpinner from './components/layouts/LoadingSpinner';
+import Button from './components/buttons/Button';
 
 const insuranceProducts = [
   {
@@ -11,7 +12,7 @@ const insuranceProducts = [
     title: 'Seguro de Vida',
     description: 'Protege a tus seres queridos financieramente cuando ya no estés con ellos.',
     icon: '/icons/life.svg',
-    color: '#4a6fa5',
+    color: '#FFB5A7',
     benefits: [
       'Cobertura por fallecimiento',
       'Beneficios por invalidez',
@@ -24,7 +25,7 @@ const insuranceProducts = [
     title: 'Seguro Médico',
     description: 'Obtén la mejor atención médica sin preocuparte por los gastos inesperados.',
     icon: '/icons/health.svg',
-    color: '#36d399',
+    color: '#8BD3DD',
     benefits: [
       'Consultas médicas',
       'Hospitalización',
@@ -37,7 +38,7 @@ const insuranceProducts = [
     title: 'Seguro de Hogar',
     description: 'Protege tu casa y tus pertenencias contra daños, robos y otros imprevistos.',
     icon: '/icons/home.svg',
-    color: '#f5b35e',
+    color: '#B5E5CF',
     benefits: [
       'Cobertura contra incendios',
       'Protección contra robos',
@@ -50,7 +51,7 @@ const insuranceProducts = [
     title: 'Seguro de Auto',
     description: 'Maneja con tranquilidad sabiendo que estás protegido ante cualquier accidente.',
     icon: '/icons/car.svg',
-    color: '#f87272',
+    color: '#FFD8A9',
     benefits: [
       'Daños a terceros',
       'Cobertura amplia',
@@ -63,7 +64,7 @@ const insuranceProducts = [
     title: 'Seguro de Viaje',
     description: 'Viaja sin preocupaciones con cobertura médica y de equipaje en todo el mundo.',
     icon: '/icons/travel.svg',
-    color: '#3abff8',
+    color: '#8EAAFB',
     benefits: [
       'Atención médica internacional',
       'Pérdida de equipaje',
@@ -81,9 +82,8 @@ export default function Home() {
       {/* Hero Section */}
       <section 
         id="inicio" 
-        className="hero-gradient text-neutral-200 pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden"
+        className="hero-gradient text-text-dark pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-[#090B0A] to-[#0E0E0E] opacity-90 z-0"></div>
         <div 
           className="absolute inset-0 z-0 opacity-30" 
           style={{ 
@@ -98,22 +98,16 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Protegemos lo que más valoras. <span className="text-secondary">¿Tu tranquilidad?</span> Es nuestra prioridad.
             </h1>
-            <p className="text-xl md:text-2xl text-neutral-200/90 mb-8">
+            <p className="text-xl md:text-2xl text-text-dark mb-8">
               En Blindando Sueños, no solo ofrecemos pólizas: creamos <span className="text-secondary">protección personalizada</span> para que puedas vivir plenamente, sin preocupaciones.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link 
-                href="#seguros" 
-                className="px-8 py-3 rounded-full bg-primary text-text-dark font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-              >
+              <Button href="#seguros" variant="primary">
                 Nuestros Seguros
-              </Link>
-              <Link 
-                href="#contacto" 
-                className="px-8 py-3 rounded-full bg-secondary text-neutral-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-              >
+              </Button>
+              <Button href="#contacto" variant="secondary">
                 Contactar Asesor
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -128,7 +122,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
               Nuestros Seguros
             </h2>
-            <p className="text-neutral-200">
+            <p className="text-text-dark">
               Ofrecemos una amplia gama de seguros diseñados para proteger lo que más te importa. Cada plan puede <span className="text-secondary">personalizarse</span> según tus necesidades específicas.
             </p>
           </div>
@@ -143,7 +137,7 @@ export default function Home() {
                   description={product.description}
                   icon={product.icon}
                   benefits={product.benefits}
-                  color={product.id === 'seguro-de-vida' ? '#FEBE17' : product.id === 'seguro-medico' ? '#55A803' : product.color}
+                  color={product.color}
                 />
               ))}
             </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Button from '../buttons/Button';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,7 +39,7 @@ export default function Header() {
             className="h-10 w-auto"
           />
           <span className={`text-xl font-bold transition-all ${
-            isScrolled ? 'text-primary' : 'text-neutral-200'
+            isScrolled ? 'text-primary' : 'text-text-dark'
           }`}>
             Blindando Sueños
           </span>
@@ -55,7 +56,7 @@ export default function Header() {
             viewBox="0 0 24 24" 
             stroke="currentColor" 
             className={`w-6 h-6 transition-all ${
-              isScrolled ? 'text-primary' : 'text-neutral-200'
+              isScrolled ? 'text-primary' : 'text-text-dark'
             }`}
           >
             <path 
@@ -72,7 +73,7 @@ export default function Header() {
           <Link 
             href="/#inicio" 
             className={`font-medium transition-all hover:text-secondary ${
-              isScrolled ? 'text-neutral-200' : 'text-neutral-200'
+              isScrolled ? 'text-text-dark' : 'text-text-dark'
             }`}
           >
             Inicio
@@ -80,7 +81,7 @@ export default function Header() {
           <Link 
             href="/#seguros" 
             className={`font-medium transition-all hover:text-secondary ${
-              isScrolled ? 'text-neutral-200' : 'text-neutral-200'
+              isScrolled ? 'text-text-dark' : 'text-text-dark'
             }`}
           >
             Seguros
@@ -88,7 +89,7 @@ export default function Header() {
           <Link 
             href="/#nosotros" 
             className={`font-medium transition-all hover:text-secondary ${
-              isScrolled ? 'text-neutral-200' : 'text-neutral-200'
+              isScrolled ? 'text-text-dark' : 'text-text-dark'
             }`}
           >
             Nosotros
@@ -96,21 +97,14 @@ export default function Header() {
           <Link 
             href="/#contacto" 
             className={`font-medium transition-all hover:text-secondary ${
-              isScrolled ? 'text-neutral-200' : 'text-neutral-200'
+              isScrolled ? 'text-text-dark' : 'text-text-dark'
             }`}
           >
             Contacto
           </Link>
-          <Link 
-            href="/login" 
-            className={`ml-4 px-6 py-2 rounded-full font-medium transition-all
-              ${isScrolled 
-                ? 'bg-primary text-text-dark hover:bg-primary/90' 
-                : 'bg-primary text-text-dark hover:bg-primary/90'
-              } shadow-md hover:shadow-lg`}
-          >
+          <Button href="/login" variant="primary" className="ml-4 py-2">
             Iniciar Sesión
-          </Link>
+          </Button>
         </nav>
 
         {/* Mobile Navigation Overlay */}
@@ -125,7 +119,7 @@ export default function Header() {
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor" 
-                className="w-8 h-8 text-neutral-200"
+                className="w-8 h-8 text-text-dark"
               >
                 <path 
                   strokeLinecap="round" 
@@ -138,39 +132,40 @@ export default function Header() {
             <nav className="flex flex-col items-center gap-8">
               <Link 
                 href="/#inicio" 
-                className="text-neutral-200 text-xl font-medium"
+                className="text-text-dark text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Inicio
               </Link>
               <Link 
                 href="/#seguros" 
-                className="text-neutral-200 text-xl font-medium"
+                className="text-text-dark text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Seguros
               </Link>
               <Link 
                 href="/#nosotros" 
-                className="text-neutral-200 text-xl font-medium"
+                className="text-text-dark text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Nosotros
               </Link>
               <Link 
                 href="/#contacto" 
-                className="text-neutral-200 text-xl font-medium"
+                className="text-text-dark text-xl font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contacto
               </Link>
-              <Link 
+              <Button 
                 href="/login" 
-                className="mt-4 px-8 py-3 bg-primary text-text-dark rounded-full font-medium shadow-md"
+                variant="primary"
+                className="mt-4"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Iniciar Sesión
-              </Link>
+              </Button>
             </nav>
           </div>
         )}

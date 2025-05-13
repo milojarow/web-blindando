@@ -3,8 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
+import Button from '../buttons/Button';
 
-export default function CardInsurance({ id, title, description, icon, benefits, color = "#FEBE17" }) {
+export default function CardInsurance({ id, title, description, icon, benefits, color = "#FFB5A7" }) {
   const cardRef = useRef(null);
 
   const onMouseMove = (e) => {
@@ -26,7 +27,7 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
         '--card-color': color,
         background: `radial-gradient(
           800px circle at var(--mouse-x) var(--mouse-y),
-          rgba(255, 255, 255, 0.05),
+          rgba(255, 255, 255, 0.8),
           transparent 40%
         )`,
       }}
@@ -36,7 +37,7 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
         <div className="flex items-center mb-4">
           <div 
             className="w-14 h-14 rounded-full flex items-center justify-center mr-4"
-            style={{ background: `${color}20` }}
+            style={{ background: `${color}40` }}
           >
             <Image
               src={icon}
@@ -51,11 +52,11 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
           </h3>
         </div>
         
-        <p className="text-neutral-200 mb-6">{description}</p>
+        <p className="text-text-dark mb-6">{description}</p>
         
         {benefits && benefits.length > 0 && (
           <div className="mt-auto mb-6">
-            <h4 className="font-semibold text-neutral-200 mb-2">Beneficios:</h4>
+            <h4 className="font-semibold text-text-dark mb-2">Beneficios:</h4>
             <ul className="space-y-2">
               {benefits.map((benefit, index) => (
                 <li key={index} className="flex items-start">
@@ -71,31 +72,23 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-neutral-300">{benefit}</span>
+                  <span className="text-text-dark">{benefit}</span>
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        <div className="mt-auto flex justify-between items-center">
-          <div
-            className="relative h-[3px] w-1/3 overflow-hidden bg-neutral rounded-full"
-          >
-            <div
-              className="absolute top-0 left-0 h-full w-0 group-hover:w-full transition-all duration-700"
-              style={{ background: color }}
-            ></div>
-          </div>
-          
-          <Link
-            href={`/seguros/${id}`}
-            className="inline-flex items-center font-medium transition-all group-hover:translate-x-1"
-            style={{ color }}
+        <div className="mt-auto flex justify-end">
+          <Button 
+            href={`/seguros/${id}`} 
+            variant="primary"
+            className="text-sm px-4 py-2"
+            style={{ backgroundColor: color }}
           >
             Ver detalles
             <svg
-              className="ml-2 w-4 h-4"
+              className="ml-2 w-4 h-4 inline"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -108,7 +101,7 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </Link>
+          </Button>
         </div>
       </div>
       
