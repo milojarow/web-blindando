@@ -14,7 +14,7 @@ const insuranceProducts = {
     tagline: 'Protección financiera para los que más amas',
     description: 'Nuestro seguro de vida está diseñado para proporcionar seguridad financiera a tus seres queridos cuando ya no estés con ellos. Con opciones flexibles y personalizables, puedes adaptar la cobertura a tus necesidades específicas.',
     iconName: 'HeartPulse',
-    color: '#4a6fa5',
+    color: '#FFC107',
     coverageAmount: '$1,000,000 - $5,000,000',
     monthlyPayment: 'Desde $350 MXN',
     benefits: [
