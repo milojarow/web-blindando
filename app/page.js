@@ -440,25 +440,13 @@ export default function Home() {
             >
               <ContactItem 
                 title="Línea principal" 
-                content="+52 55 1234 5678" 
+                content="+52 (899) 290-9762" 
                 isLink={true} 
-                href="tel:+525512345678" 
-              />
-              <ContactItem 
-                title="Atención a clientes" 
-                content="+52 55 8765 4321" 
-                isLink={true} 
-                href="tel:+525587654321" 
-              />
-              <ContactItem 
-                title="Emergencias" 
-                content="+52 55 5555 5555" 
-                isLink={true} 
-                href="tel:+525555555555" 
+                href="tel:+528992909762" 
               />
               <ContactItem 
                 title="Horario de atención" 
-                content="Lun - Vie: 9:00 AM - 6:00 PM" 
+                content="Lun - Vie: 10:00 AM - 4:00 PM" 
                 isLink={false} 
               />
             </CardContact>
@@ -472,21 +460,9 @@ export default function Home() {
             >
               <ContactItem 
                 title="Información general" 
-                content="info@blindandosuenos.com" 
+                content="ahujajosejuan@gmail.com" 
                 isLink={true} 
-                href="mailto:info@blindandosuenos.com" 
-              />
-              <ContactItem 
-                title="Atención a clientes" 
-                content="clientes@blindandosuenos.com" 
-                isLink={true} 
-                href="mailto:clientes@blindandosuenos.com" 
-              />
-              <ContactItem 
-                title="Cotizaciones" 
-                content="cotiza@blindandosuenos.com" 
-                isLink={true} 
-                href="mailto:cotiza@blindandosuenos.com" 
+                href="mailto:ahujajosejuan@gmail.com" 
               />
               <ContactItem 
                 title="Tiempo de respuesta" 
@@ -504,22 +480,12 @@ export default function Home() {
             >
               <ContactItem 
                 title="Oficina Principal" 
-                content="Av. Insurgentes Sur 1234, Col. Del Valle, CDMX" 
-                isLink={false} 
-              />
-              <ContactItem 
-                title="Sucursal Polanco" 
-                content="Av. Presidente Masaryk 123, Polanco, CDMX" 
-                isLink={false} 
-              />
-              <ContactItem 
-                title="Sucursal Guadalajara" 
-                content="Av. México 3370, Vallarta Norte, Guadalajara" 
+                content="C. Carlo Collodi 321, Sector Colinas Elite, Lomas del Real de Jarachina Sur, 88730 Reynosa, Tamps., México" 
                 isLink={false} 
               />
               <ContactItem 
                 title="Horario de oficinas" 
-                content="Lun - Vie: 9:00 AM - 6:00 PM" 
+                content="Lun - Vie: 10:00 AM - 4:00 PM" 
                 isLink={false} 
               />
             </CardContact>
@@ -536,22 +502,12 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <ContactItem 
                   title="Oficinas" 
-                  content="Lun - Vie: 9:00 AM - 6:00 PM" 
+                  content="Lun - Vie: 10:00 AM - 4:00 PM" 
                   isLink={false} 
                 />
                 <ContactItem 
-                  title="Call Center" 
-                  content="Lun - Sáb: 8:00 AM - 8:00 PM" 
-                  isLink={false} 
-                />
-                <ContactItem 
-                  title="Chat en línea" 
-                  content="Lun - Dom: 8:00 AM - 10:00 PM" 
-                  isLink={false} 
-                />
-                <ContactItem 
-                  title="Emergencias" 
-                  content="24/7 - Todo el año" 
+                  title="WhatsApp" 
+                  content="Lun - Vie: 10:00 AM - 4:00 PM" 
                   isLink={false} 
                 />
               </div>
@@ -569,28 +525,50 @@ export default function Home() {
                   title="Cotiza ahora" 
                   content="Solicitar Cotización" 
                   isLink={true} 
-                  href="#" 
+                  href="mailto:ahujajosejuan@gmail.com?subject=Solicitud%20de%20Cotización" 
                 />
                 <ContactItem 
                   title="WhatsApp" 
-                  content="+52 55 1234 5678" 
+                  content="+52 (899) 290-9762" 
                   isLink={true} 
-                  href="https://wa.me/525512345678" 
-                />
-                <ContactItem 
-                  title="Chat en vivo" 
-                  content="Iniciar conversación" 
-                  isLink={true} 
-                  href="#" 
+                  href="https://wa.me/528992909762" 
                 />
                 <ContactItem 
                   title="Agendar cita" 
-                  content="Reservar espacio" 
+                  content="Próximamente" 
+                  isLink={false} 
+                />
+                <ContactItem 
+                  title="Redes Sociales" 
+                  content="Conéctate con nosotros" 
                   isLink={true} 
-                  href="#" 
+                  href="#redes-sociales" 
                 />
               </div>
             </CardContact>
+          </div>
+          
+          <div className="mt-16" id="redes-sociales">
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-[#1e293b] mb-6 text-center">Síguenos en redes sociales</h3>
+              <div className="flex justify-center space-x-8">
+                <a href="https://www.facebook.com/profile.php?id=61570288538790" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 transition-colors">
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a href="https://youtu.be/Tvm2mGwmrMk" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 transition-colors">
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+                <a href="https://www.linkedin.com/help/linkedin/answer/a702683" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 transition-colors">
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
