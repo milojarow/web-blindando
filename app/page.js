@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from './components/layouts/Header';
@@ -80,6 +80,134 @@ const insuranceProducts = [
   },
 ];
 
+// Wavy Divider Component that detects scroll speed
+function WavyDivider() {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const lastScrollY = useRef(0);
+  const lastScrollTime = useRef(Date.now());
+  const scrollSpeedThreshold = 120; // Extremely high threshold (was 80)
+  const animationTimeout = useRef(null);
+  const animationCooldown = useRef(false);
+  const consecutiveFastScrolls = useRef(0);
+  const requiredConsecutiveFastScrolls = 4; // Require 4 fast scrolls (was 2)
+  const lastFastScrollTime = useRef(0);
+  const fastScrollTimeWindow = 300; // Fast scrolls must occur within 300ms of each other
+
+  useEffect(() => {
+    // Calculate different thresholds for mobile and desktop
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const actualThreshold = isMobile ? scrollSpeedThreshold * 0.7 : scrollSpeedThreshold;
+    const actualRequiredScrolls = isMobile ? requiredConsecutiveFastScrolls - 1 : requiredConsecutiveFastScrolls;
+    
+    const handleScroll = () => {
+      // Don't check during cooldown to prevent animation spamming
+      if (animationCooldown.current) return;
+      
+      const currentY = window.scrollY;
+      const currentTime = Date.now();
+      const timeDiff = currentTime - lastScrollTime.current;
+      
+      if (timeDiff > 0 && timeDiff < 200) { // Only consider quick successive scrolls
+        // Calculate scroll speed in pixels per 100ms
+        const scrollSpeed = Math.abs(currentY - lastScrollY.current) * (100 / timeDiff);
+        
+        const currentFastScrollTime = Date.now();
+        // Check if we had another fast scroll within the time window
+        if (scrollSpeed > actualThreshold) {
+          // If too much time passed since last fast scroll, reset counter
+          if (lastFastScrollTime.current > 0 && 
+              currentFastScrollTime - lastFastScrollTime.current > fastScrollTimeWindow) {
+            consecutiveFastScrolls.current = 1; // Reset to 1 for this fast scroll
+          } else {
+            consecutiveFastScrolls.current += 1;
+          }
+          lastFastScrollTime.current = currentFastScrollTime;
+        } else {
+          // If current scroll isn't fast enough, reset counter if it's been a while
+          if (currentFastScrollTime - lastFastScrollTime.current > fastScrollTimeWindow) {
+            consecutiveFastScrolls.current = 0;
+          }
+        }
+        
+        // Very strict position check - must be almost exactly at the divider
+        const isNearDivider = currentY < window.innerHeight * 0.5 && currentY > window.innerHeight * 0.2;
+        const hasEnoughConsecutiveFastScrolls = consecutiveFastScrolls.current >= actualRequiredScrolls;
+        
+        // Only trigger if at divider, with enough fast scrolls, and not already animating
+        if (scrollSpeed > actualThreshold && isNearDivider && hasEnoughConsecutiveFastScrolls && !isAnimating) {
+          setIsAnimating(true);
+          consecutiveFastScrolls.current = 0; // Reset counter
+          lastFastScrollTime.current = 0; // Reset time
+          
+          // Set cooldown to prevent multiple activations
+          animationCooldown.current = true;
+          
+          // Auto-disable animation after it completes and set cooldown
+          animationTimeout.current = setTimeout(() => {
+            setIsAnimating(false);
+            
+            // Add very long cooldown to prevent re-triggering
+            setTimeout(() => {
+              animationCooldown.current = false;
+            }, 5000); // Increased from 3s to 5s
+          }, 1800);
+        }
+      }
+      
+      lastScrollY.current = currentY;
+      lastScrollTime.current = currentTime;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isAnimating]);
+
+  return (
+    <div 
+      className="absolute bottom-0 left-0 right-0 w-full overflow-hidden z-10" 
+      style={{ height: "70px", transform: "translateY(1px)" }}
+    >
+      <svg 
+        className="absolute bottom-0 w-full h-full" 
+        viewBox="0 0 1440 100" 
+        preserveAspectRatio="none" 
+        fill="#F0F7FF" 
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path 
+          d="M0,0 C240,95 480,100 720,80 C960,60 1200,40 1440,80 L1440,100 L0,100 Z"
+          className={isAnimating ? 'animate-wave' : ''}
+        ></path>
+      </svg>
+      <style jsx global>{`
+        @keyframes wave {
+          0% {
+            d: path("M0,0 C240,95 480,100 720,80 C960,60 1200,40 1440,80 L1440,100 L0,100 Z");
+          }
+          20% {
+            d: path("M0,0 C240,75 480,115 720,65 C960,75 1200,45 1440,95 L1440,100 L0,100 Z");
+          }
+          40% {
+            d: path("M0,0 C240,105 480,85 720,95 C960,45 1200,70 1440,65 L1440,100 L0,100 Z");
+          }
+          60% {
+            d: path("M0,0 C240,70 480,110 720,60 C960,90 1200,40 1440,85 L1440,100 L0,100 Z");
+          }
+          80% {
+            d: path("M0,0 C240,100 480,80 720,90 C960,55 1200,75 1440,60 L1440,100 L0,100 Z");
+          }
+          100% {
+            d: path("M0,0 C240,95 480,100 720,80 C960,60 1200,40 1440,80 L1440,100 L0,100 Z");
+          }
+        }
+        .animate-wave {
+          animation: wave 1.8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen">
@@ -118,17 +246,7 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden z-10" style={{ height: "70px", transform: "translateY(1px)" }}>
-          <svg 
-            className="absolute bottom-0 w-full h-full" 
-            viewBox="0 0 1440 100" 
-            preserveAspectRatio="none" 
-            fill="#F0F7FF" 
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M0,0 C240,95 480,100 720,80 C960,60 1200,40 1440,80 L1440,100 L0,100 Z"></path>
-          </svg>
-        </div>
+        <WavyDivider />
       </section>
       
       {/* Insurance Products Section */}
