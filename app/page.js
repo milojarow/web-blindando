@@ -80,6 +80,8 @@ const insuranceProducts = [
   },
 ];
 
+// Simplified implementation without separate constant
+
 // Wavy Divider Component that detects scroll speed
 function WavyDivider() {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -209,6 +211,30 @@ function WavyDivider() {
 }
 
 export default function Home() {
+  // Add cursor blink animation
+  useEffect(() => {
+    // Make sure we're in the browser
+    if (typeof window === 'undefined') return;
+    
+    // Create a style element
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes blink {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0; }
+      }
+      
+      .text-cursor {
+        animation: blink 1s infinite step-end;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+  
   return (
     <main className="min-h-screen">
       <Header />
@@ -229,8 +255,23 @@ export default function Home() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-[#212121]">
-              Protegemos lo que más valoras. <span className="text-primary">Es nuestra prioridad.</span>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-[#212121]">
+              Protegemos lo que más valoras.
+              <br />
+              <span className="text-primary">Es nuestra prioridad</span>
+              <span 
+                className="text-cursor" 
+                style={{
+                  display: 'inline-block',
+                  marginLeft: '5px',
+                  width: '2px',
+                  height: '0.7em',
+                  backgroundColor: 'black',
+                  verticalAlign: 'middle',
+                  position: 'relative',
+                  top: '-1px'
+                }}
+              ></span>
             </h1>
             <p className="text-xl md:text-2xl text-[#333333] mb-8">
               En Blindando Sueños, no solo ofrecemos pólizas: creamos <span className="text-primary">protección personalizada</span> para que puedas vivir plenamente, sin preocupaciones.
