@@ -230,7 +230,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-[#212121]">
-              Protegemos lo que más valoras. <span className="text-primary">¿Tu tranquilidad?</span> Es nuestra prioridad.
+              Protegemos lo que más valoras. <span className="text-primary">Es nuestra prioridad.</span>
             </h1>
             <p className="text-xl md:text-2xl text-[#333333] mb-8">
               En Blindando Sueños, no solo ofrecemos pólizas: creamos <span className="text-primary">protección personalizada</span> para que puedas vivir plenamente, sin preocupaciones.
