@@ -127,10 +127,7 @@ export default function CardInsurance({ id, title, description, iconName, benefi
           <ButtonOutline 
             href={`/seguros/${id}`} 
             color={color}
-            className={`w-full gap-2 flex items-center justify-center py-2 ${isHovered ? 'bg-[' + color + '] text-white hover:bg-opacity-90' : ''}`}
-            style={{
-              ...(isHovered && { backgroundColor: color, color: 'white' })
-            }}
+            className={`w-full gap-2 flex items-center justify-center py-2 ${isHovered ? 'hover-active' : ''}`}
           >
             Ver detalles
             <svg

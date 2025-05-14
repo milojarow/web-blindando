@@ -42,7 +42,7 @@ body {
 }
 
 /* Custom styles for outline buttons */
-.btn.btn-outline {
+.btn.btn-outline.button-outline-custom {
   position: relative;
   z-index: 1;
   transition: all 0.3s ease;
@@ -51,13 +51,20 @@ body {
   min-height: 0;
 }
 
-.btn.btn-outline:hover {
-  background-color: var(--btn-color, currentColor);
-  border-color: var(--btn-color, currentColor);
-  color: white;
+.btn.btn-outline.button-outline-custom:hover {
+  background-color: var(--btn-color, currentColor) !important;
+  border-color: var(--btn-color, currentColor) !important;
+  color: white !important;
 }
 
-.btn.btn-outline::before {
+/* Class for when parent is already hovered */
+.btn.btn-outline.button-outline-custom.hover-active {
+  background-color: var(--btn-color, currentColor) !important;
+  border-color: var(--btn-color, currentColor) !important;
+  color: white !important;
+}
+
+.btn.btn-outline.button-outline-custom::before {
   content: '';
   position: absolute;
   top: 0;
@@ -71,7 +78,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.btn.btn-outline:hover::before {
+.btn.btn-outline.button-outline-custom:hover::before {
   opacity: 0.15;
 }
 
