@@ -388,7 +388,7 @@ export default function InsuranceDetail() {
                     <IconComponent 
                       size={28} 
                       color={product.color}
-                    />
+                  />
                   )}
                 </div>
                 <div>

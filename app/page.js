@@ -1,11 +1,16 @@
+'use client';
+
 import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from './components/layouts/Header';
 import CardInsurance from './components/cards/CardInsurance';
 import CardInfo from './components/cards/CardInfo';
+import CardContact from './components/cards/CardContact';
+import ContactItem from './components/cards/ContactItem';
 import LoadingSpinner from './components/layouts/LoadingSpinner';
 import Button from './components/buttons/Button';
+import { PhoneCall, Mail, MapPin, Clock, Zap } from 'lucide-react';
 
 const insuranceProducts = [
   {
@@ -113,10 +118,17 @@ export default function Home() {
           </div>
         </div>
         
-        <div 
-          className="absolute bottom-0 left-0 right-0 h-16 -mb-10 rounded-t-[50%] z-10"
-          style={{ backgroundColor: "#F0F7FF" }}
-        ></div>
+        <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden z-10" style={{ height: "70px", transform: "translateY(1px)" }}>
+          <svg 
+            className="absolute bottom-0 w-full h-full" 
+            viewBox="0 0 1440 100" 
+            preserveAspectRatio="none" 
+            fill="#F0F7FF" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M0,0 C240,95 480,100 720,80 C960,60 1200,40 1440,80 L1440,100 L0,100 Z"></path>
+          </svg>
+        </div>
       </section>
       
       {/* Insurance Products Section */}
@@ -181,15 +193,45 @@ export default function Home() {
               </div>
 
               <div className="lg:w-1/3 flex justify-center">
-                <div className="relative w-64 h-64">
-                  <div className="absolute inset-0 rounded-full border-[6px] border-blue-500"></div>
-                  <div className="absolute inset-0 rounded-full border-[6px] border-transparent border-t-yellow-400 border-r-yellow-400"></div>
-                  <div className="absolute inset-[6px] overflow-hidden rounded-full">
+                <div className="relative w-64 h-64 group cursor-pointer">
+                  <div 
+                    className="absolute inset-0 rounded-full border-[6px] border-blue-500 transition-all duration-500 group-hover:scale-110 group-hover:border-[8px]"
+                    style={{
+                      transformOrigin: 'center',
+                    }}
+                  ></div>
+                  <div 
+                    className="absolute inset-0 rounded-full border-[6px] border-transparent border-t-yellow-400 border-r-yellow-400 transition-all duration-700 group-hover:scale-110 group-hover:border-[8px]"
+                    style={{
+                      transformOrigin: 'center',
+                      animation: 'none',
+                      transition: 'all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.animation = 'spinAndSlow 1.5s cubic-bezier(0.5, 0, 0.1, 1) forwards';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.animation = 'spinBack 0.8s cubic-bezier(0.3, 0.1, 0.3, 1) forwards';
+                    }}
+                  ></div>
+                  <style jsx global>{`
+                    @keyframes spinAndSlow {
+                      0% { transform: scale(1.1) rotate(0deg); }
+                      40% { transform: scale(1.1) rotate(300deg); }
+                      85% { transform: scale(1.1) rotate(355deg); }
+                      100% { transform: scale(1.1) rotate(360deg); }
+                    }
+                    @keyframes spinBack {
+                      0% { transform: scale(1.1) rotate(360deg); }
+                      100% { transform: scale(1) rotate(0deg); }
+                    }
+                  `}</style>
+                  <div className="absolute inset-[6px] overflow-hidden rounded-full transition-all duration-500 group-hover:inset-[8px]">
                     <Image 
                       src="/circle_profile_picture.jpg"
                       alt="Ejecutivo de Blindando Sueños"
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                       priority
                     />
                   </div>
@@ -218,95 +260,184 @@ export default function Home() {
       </section>
       
       {/* Contact Section */}
-      <section id="contacto" className="py-20 bg-base-100">
+      <section id="contacto" className="py-20" style={{ backgroundColor: "#F8FAFC" }}>
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1e293b] mb-4">
               Contáctanos
             </h2>
-            <p className="text-text-dark">
+            <p className="text-[#475569] text-lg">
               Estamos aquí para responder todas tus dudas. Comunícate con nosotros y un asesor especializado te ayudará a encontrar la mejor opción para ti.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-base-200 rounded-lg shadow-lg p-6 flex flex-col items-center text-center border border-neutral">
-              <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-4">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" 
-                  className="w-8 h-8 text-text-dark"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" 
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Teléfono</h3>
-              <p className="text-text-dark mb-4">Disponible de Lunes a Viernes, 9AM - 6PM</p>
-              <a href="tel:+5255XXXXXXXX" className="text-secondary font-medium hover:text-primary transition-colors">+52 55 XXXX XXXX</a>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <CardContact 
+              icon={{ 
+                component: <PhoneCall size={24} />, 
+                color: "#2563eb" 
+              }} 
+              title="Teléfonos"
+            >
+              <ContactItem 
+                title="Línea principal" 
+                content="+52 55 1234 5678" 
+                isLink={true} 
+                href="tel:+525512345678" 
+              />
+              <ContactItem 
+                title="Atención a clientes" 
+                content="+52 55 8765 4321" 
+                isLink={true} 
+                href="tel:+525587654321" 
+              />
+              <ContactItem 
+                title="Emergencias" 
+                content="+52 55 5555 5555" 
+                isLink={true} 
+                href="tel:+525555555555" 
+              />
+              <ContactItem 
+                title="Horario de atención" 
+                content="Lun - Vie: 9:00 AM - 6:00 PM" 
+                isLink={false} 
+              />
+            </CardContact>
             
-            <div className="bg-base-200 rounded-lg shadow-lg p-6 flex flex-col items-center text-center border border-neutral">
-              <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-4">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" 
-                  className="w-8 h-8 text-text-dark"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" 
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Correo Electrónico</h3>
-              <p className="text-text-dark mb-4">Te respondemos en menos de 24 horas</p>
-              <a href="mailto:contacto@blindandosuenos.com" className="text-secondary font-medium hover:text-primary transition-colors">contacto@blindandosuenos.com</a>
-            </div>
+            <CardContact 
+              icon={{ 
+                component: <Mail size={24} />, 
+                color: "#0891b2" 
+              }} 
+              title="Correo Electrónico"
+            >
+              <ContactItem 
+                title="Información general" 
+                content="info@blindandosuenos.com" 
+                isLink={true} 
+                href="mailto:info@blindandosuenos.com" 
+              />
+              <ContactItem 
+                title="Atención a clientes" 
+                content="clientes@blindandosuenos.com" 
+                isLink={true} 
+                href="mailto:clientes@blindandosuenos.com" 
+              />
+              <ContactItem 
+                title="Cotizaciones" 
+                content="cotiza@blindandosuenos.com" 
+                isLink={true} 
+                href="mailto:cotiza@blindandosuenos.com" 
+              />
+              <ContactItem 
+                title="Tiempo de respuesta" 
+                content="En menos de 24 horas" 
+                isLink={false} 
+              />
+            </CardContact>
             
-            <div className="bg-base-200 rounded-lg shadow-lg p-6 flex flex-col items-center text-center border border-neutral">
-              <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-4">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" 
-                  className="w-8 h-8 text-text-dark"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" 
-                  />
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" 
-                  />
-                </svg>
+            <CardContact 
+              icon={{ 
+                component: <MapPin size={24} />, 
+                color: "#e11d48" 
+              }} 
+              title="Oficinas"
+            >
+              <ContactItem 
+                title="Oficina Principal" 
+                content="Av. Insurgentes Sur 1234, Col. Del Valle, CDMX" 
+                isLink={false} 
+              />
+              <ContactItem 
+                title="Sucursal Polanco" 
+                content="Av. Presidente Masaryk 123, Polanco, CDMX" 
+                isLink={false} 
+              />
+              <ContactItem 
+                title="Sucursal Guadalajara" 
+                content="Av. México 3370, Vallarta Norte, Guadalajara" 
+                isLink={false} 
+              />
+              <ContactItem 
+                title="Horario de oficinas" 
+                content="Lun - Vie: 9:00 AM - 6:00 PM" 
+                isLink={false} 
+              />
+            </CardContact>
+          </div>
+          
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <CardContact 
+              icon={{ 
+                component: <Clock size={24} />, 
+                color: "#0d9488" 
+              }} 
+              title="Horarios de Atención"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <ContactItem 
+                  title="Oficinas" 
+                  content="Lun - Vie: 9:00 AM - 6:00 PM" 
+                  isLink={false} 
+                />
+                <ContactItem 
+                  title="Call Center" 
+                  content="Lun - Sáb: 8:00 AM - 8:00 PM" 
+                  isLink={false} 
+                />
+                <ContactItem 
+                  title="Chat en línea" 
+                  content="Lun - Dom: 8:00 AM - 10:00 PM" 
+                  isLink={false} 
+                />
+                <ContactItem 
+                  title="Emergencias" 
+                  content="24/7 - Todo el año" 
+                  isLink={false} 
+                />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Dirección</h3>
-              <p className="text-text-dark mb-4">Visítanos en nuestras oficinas</p>
-              <p className="text-secondary font-medium">Av. Insurgentes Sur 1234, Col. Del Valle, CDMX</p>
-            </div>
+            </CardContact>
+            
+            <CardContact 
+              icon={{ 
+                component: <Zap size={24} />, 
+                color: "#ca8a04" 
+              }} 
+              title="Atención Rápida"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <ContactItem 
+                  title="Cotiza ahora" 
+                  content="Solicitar Cotización" 
+                  isLink={true} 
+                  href="#" 
+                />
+                <ContactItem 
+                  title="WhatsApp" 
+                  content="+52 55 1234 5678" 
+                  isLink={true} 
+                  href="https://wa.me/525512345678" 
+                />
+                <ContactItem 
+                  title="Chat en vivo" 
+                  content="Iniciar conversación" 
+                  isLink={true} 
+                  href="#" 
+                />
+                <ContactItem 
+                  title="Agendar cita" 
+                  content="Reservar espacio" 
+                  isLink={true} 
+                  href="#" 
+                />
+              </div>
+            </CardContact>
           </div>
         </div>
       </section>
       
       {/* Footer */}
-      <footer className="bg-secondary text-text-light py-12">
+      <footer className="py-12" style={{ backgroundColor: "#1E293B", color: "#CBD5E1" }}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
@@ -319,24 +450,24 @@ export default function Home() {
                   className="h-10 w-auto"
                 />
                 <span className="text-xl font-bold">
-                  Blindando Sueños
+                  Blindando <span style={{ color: "#F59E0B" }}>Sueños</span>
                 </span>
               </div>
-              <p className="text-text-light/80 mb-6">
+              <p className="mb-6 opacity-80">
                 Protegiendo lo que más valoras con seguros personalizados y atención de calidad.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="text-text-light hover:text-primary">
+                <a href="#" className="hover:text-primary transition-colors">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-text-light hover:text-primary">
+                <a href="#" className="hover:text-primary transition-colors">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 14-7.503 14-14v-.617c.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-text-light hover:text-primary">
+                <a href="#" className="hover:text-primary transition-colors">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                   </svg>
@@ -347,38 +478,38 @@ export default function Home() {
             <div>
               <h4 className="text-lg font-semibold mb-6">Enlaces</h4>
               <ul className="space-y-4">
-                <li><Link href="/#inicio" className="text-text-light/80 hover:text-text-light">Inicio</Link></li>
-                <li><Link href="/#seguros" className="text-text-light/80 hover:text-text-light">Seguros</Link></li>
-                <li><Link href="/#nosotros" className="text-text-light/80 hover:text-text-light">Nosotros</Link></li>
-                <li><Link href="/#contacto" className="text-text-light/80 hover:text-text-light">Contacto</Link></li>
+                <li><Link href="/#inicio" className="opacity-80 hover:opacity-100 transition-opacity">Inicio</Link></li>
+                <li><Link href="/#seguros" className="opacity-80 hover:opacity-100 transition-opacity">Seguros</Link></li>
+                <li><Link href="/#nosotros" className="opacity-80 hover:opacity-100 transition-opacity">Nosotros</Link></li>
+                <li><Link href="/#contacto" className="opacity-80 hover:opacity-100 transition-opacity">Contacto</Link></li>
               </ul>
             </div>
             
             <div>
               <h4 className="text-lg font-semibold mb-6">Nuestros Seguros</h4>
               <ul className="space-y-4">
-                <li><Link href="/seguros/seguro-de-vida" className="text-text-light/80 hover:text-text-light">Seguro de Vida</Link></li>
-                <li><Link href="/seguros/orvi" className="text-text-light/80 hover:text-text-light">Orvi</Link></li>
-                <li><Link href="/seguros/segubeca" className="text-text-light/80 hover:text-text-light">SeguBeca</Link></li>
-                <li><Link href="/seguros/vida-mujer" className="text-text-light/80 hover:text-text-light">Vida Mujer</Link></li>
-                <li><Link href="/seguros/adapta" className="text-text-light/80 hover:text-text-light">Adapta</Link></li>
+                <li><Link href="/seguros/seguro-de-vida" className="opacity-80 hover:opacity-100 transition-opacity">Seguro de Vida</Link></li>
+                <li><Link href="/seguros/orvi" className="opacity-80 hover:opacity-100 transition-opacity">Orvi</Link></li>
+                <li><Link href="/seguros/segubeca" className="opacity-80 hover:opacity-100 transition-opacity">SeguBeca</Link></li>
+                <li><Link href="/seguros/vida-mujer" className="opacity-80 hover:opacity-100 transition-opacity">Vida Mujer</Link></li>
+                <li><Link href="/seguros/adapta" className="opacity-80 hover:opacity-100 transition-opacity">Adapta</Link></li>
               </ul>
             </div>
             
             <div>
               <h4 className="text-lg font-semibold mb-6">Legal</h4>
               <ul className="space-y-4">
-                <li><Link href="#" className="text-text-light/80 hover:text-text-light">Términos y Condiciones</Link></li>
-                <li><Link href="#" className="text-text-light/80 hover:text-text-light">Política de Privacidad</Link></li>
-                <li><Link href="#" className="text-text-light/80 hover:text-text-light">Aviso Legal</Link></li>
+                <li><Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">Términos y Condiciones</Link></li>
+                <li><Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">Política de Privacidad</Link></li>
+                <li><Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">Aviso Legal</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-text-light/20 mt-12 pt-8 text-center">
-            <p className="text-text-light/70">
-              © {new Date().getFullYear()} Blindando Sueños. Todos los derechos reservados.
-            </p>
+                      <div className="border-t border-white/20 mt-12 pt-8 text-center">
+              <p className="opacity-70">
+                © {new Date().getFullYear()} Blindando Sueños. Todos los derechos reservados.
+              </p>
           </div>
         </div>
       </footer>
