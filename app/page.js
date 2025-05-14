@@ -166,14 +166,14 @@ export default function Home() {
 
             <div className="flex flex-col lg:flex-row gap-10 items-center mb-10">
               <div className="lg:w-2/3">
-                <p className="text-gray-700 mb-6">
-                  En <span className="text-blue-600 font-medium">Blindando Sueños</span>, nos dedicamos a proteger lo que más valoras.
+                <p className="text-gray-700 mb-6 text-lg font-bold">
+                  En <span className="text-blue-600">Blindando Sueños</span>, nos dedicamos a proteger lo que más valoras.
                 </p>
-                <p className="text-gray-700 mb-6">
+                <p className="text-gray-700 mb-6 text-lg">
                   Somos una empresa comprometida con brindar soluciones personalizadas que se adaptan a las
                   necesidades cambiantes de nuestros clientes en el sector de seguros.
                 </p>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-lg">
                   Trabajamos cada día para que nuestros clientes sientan la seguridad de contar con un aliado 
                   que responderá cuando más lo necesiten, construyendo relaciones de confianza a largo plazo.
                 </p>
@@ -199,7 +199,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="text-center">
                 <h4 className="text-xl font-semibold mb-4">Nuestra Visión</h4>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-lg">
                   Ser reconocidos como la compañía aseguradora más confiable y cercana del mercado, destacándonos por 
                   nuestro excelente servicio, soluciones innovadoras y compromiso genuino con el bienestar de nuestros clientes.
                 </p>
@@ -207,7 +207,7 @@ export default function Home() {
               
               <div className="text-center">
                 <h4 className="text-xl font-semibold mb-4">Nuestra Misión</h4>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-lg">
                   Brindar protección financiera integral que permita a nuestros clientes vivir con tranquilidad, 
                   sabiendo que sus seres queridos, bienes y patrimonio están resguardados ante cualquier imprevisto.
                 </p>
@@ -215,7 +215,7 @@ export default function Home() {
               
               <div className="text-center">
                 <h4 className="text-xl font-semibold mb-4">Nuestro Compromiso</h4>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-lg">
                   Nos comprometemos a ofrecer un servicio honesto, transparente y de calidad. Trabajamos cada día para que 
                   nuestros clientes sientan la seguridad de contar con un aliado que responderá cuando más lo necesiten.
                 </p>
