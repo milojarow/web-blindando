@@ -150,7 +150,7 @@ export default function Home() {
       </section>
       
       {/* About Us Section */}
-      <section id="nosotros" className="py-20 bg-white">
+      <section id="nosotros" className="py-20" style={{ backgroundColor: "#F1F5F9" }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-6">
