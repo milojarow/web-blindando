@@ -41,6 +41,40 @@ body {
   background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
 }
 
+/* Custom styles for outline buttons */
+.btn.btn-outline {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  height: auto;
+  min-height: 0;
+}
+
+.btn.btn-outline:hover {
+  background-color: var(--btn-color, currentColor);
+  border-color: var(--btn-color, currentColor);
+  color: white;
+}
+
+.btn.btn-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  opacity: 0;
+  z-index: -1;
+  border-radius: inherit;
+  transition: all 0.3s ease;
+}
+
+.btn.btn-outline:hover::before {
+  opacity: 0.15;
+}
+
 /* Loading animation */
 .loading-spinner {
   display: inline-block;

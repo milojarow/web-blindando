@@ -276,11 +276,11 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-[#333333] mb-8">
               En Blindando Sueños, no solo ofrecemos pólizas: creamos <span className="text-primary">protección personalizada</span> para que puedas vivir plenamente, sin preocupaciones.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-6 items-center">
               <Button href="#seguros" variant="heroYellow">
                 Nuestros Seguros
               </Button>
-              <Button href="#contacto" variant="heroOutline">
+              <Button href="#contacto" variant="heroOutline" className="ml-2">
                 Contactar Asesor
               </Button>
             </div>

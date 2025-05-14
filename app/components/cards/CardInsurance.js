@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import Button from '../buttons/Button';
+import ButtonOutline from '../buttons/ButtonOutline';
 import * as LucideIcons from 'lucide-react';
 
 export default function CardInsurance({ id, title, description, iconName, benefits, color = "#FFC107" }) {
@@ -124,19 +124,17 @@ export default function CardInsurance({ id, title, description, iconName, benefi
 
         {/* Button */}
         <div className="mt-auto text-center">
-          <Button 
+          <ButtonOutline 
             href={`/seguros/${id}`} 
-            variant="outline"
-            className="w-full transition-all duration-300 group-hover:text-white"
-            style={{ 
-              borderColor: color, 
-              color: isHovered ? 'white' : color,
-              backgroundColor: isHovered ? color : 'transparent'
+            color={color}
+            className={`w-full gap-2 flex items-center justify-center py-2 ${isHovered ? 'bg-[' + color + '] text-white hover:bg-opacity-90' : ''}`}
+            style={{
+              ...(isHovered && { backgroundColor: color, color: 'white' })
             }}
           >
             Ver detalles
             <svg
-              className="ml-2 w-4 h-4 inline transition-transform duration-300 group-hover:translate-x-1"
+              className="w-4 h-4 inline transition-transform duration-300 group-hover:translate-x-1"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -149,7 +147,7 @@ export default function CardInsurance({ id, title, description, iconName, benefi
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </Button>
+          </ButtonOutline>
         </div>
       </div>
     </div>
