@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '../../components/layouts/Header';
+import * as LucideIcons from 'lucide-react';
 
 // Insurance product data
 const insuranceProducts = {
@@ -12,7 +13,7 @@ const insuranceProducts = {
     title: 'Seguro de Vida',
     tagline: 'Protección financiera para los que más amas',
     description: 'Nuestro seguro de vida está diseñado para proporcionar seguridad financiera a tus seres queridos cuando ya no estés con ellos. Con opciones flexibles y personalizables, puedes adaptar la cobertura a tus necesidades específicas.',
-    icon: '/icons/life.svg',
+    iconName: 'HeartPulse',
     color: '#4a6fa5',
     coverageAmount: '$1,000,000 - $5,000,000',
     monthlyPayment: 'Desde $350 MXN',
@@ -63,223 +64,223 @@ const insuranceProducts = {
       }
     ]
   },
-  'seguro-medico': {
-    title: 'Seguro Médico',
-    tagline: 'Tu salud, nuestra prioridad',
-    description: 'Nuestro seguro médico te ofrece acceso a la mejor atención médica sin preocuparte por los costos. Con cobertura amplia que incluye consultas, hospitalización, cirugías y más, puedes centrarte en lo que realmente importa: tu salud y la de tu familia.',
-    icon: '/icons/health.svg',
-    color: '#36d399',
-    coverageAmount: 'Hasta $20,000,000 MXN',
-    monthlyPayment: 'Desde $550 MXN',
+  'orvi': {
+    title: 'Orvi',
+    tagline: 'Protección vitalicia con solidez financiera',
+    description: 'Orvi es un Seguro de Vida diseñado especialmente para personas responsables que se preocupan por proteger a su familia. Te proporciona protección vitalicia a un costo que permanecerá constante, brindándote la tranquilidad de saber que tu familia estará protegida cuando más lo necesite.',
+    iconName: 'ShieldCheck',
+    color: '#9C27B0',
+    coverageAmount: 'Desde $30,000 USD o 90,000 UDI',
+    monthlyPayment: 'Adaptable a tu presupuesto',
     benefits: [
-      'Consultas médicas',
-      'Hospitalización',
-      'Medicamentos',
-      'Atención de emergencias',
-      'Cirugías programadas',
-      'Estudios de laboratorio',
-      'Atención dental básica',
-      'Segunda opinión médica'
+      'Protección por fallecimiento vitalicia',
+      'Prima Nivelada que permanece constante',
+      'Conservación del poder adquisitivo (en USD o UDI)',
+      'Tarifas preferenciales para no fumadores',
+      'Beneficios por invalidez total y permanente',
+      'Apoyo en Vida (AV) por enfermedad terminal',
+      'Asistencia Médica en los Estados Unidos (BAM)',
+      'Opción de cobertura por accidentes'
     ],
     features: [
       {
-        title: 'Red Médica Extensa',
-        description: 'Accede a nuestra amplia red de hospitales, clínicas y especialistas en todo el país.'
+        title: 'Protección Vitalicia',
+        description: 'Garantiza una protección por fallecimiento durante toda tu vida, sin importar cuándo ocurra.'
       },
       {
-        title: 'Cobertura Internacional',
-        description: 'Opción de cobertura para atención médica en el extranjero en caso de emergencia o tratamientos especializados.'
+        title: 'Plazo de Pago Flexible',
+        description: 'Opciones de pago de 6, 10, 15, 20 años, hasta los 60 años o durante toda la vida, adaptándose a tu etapa productiva.'
       },
       {
-        title: 'Telemedicina 24/7',
-        description: 'Consultas médicas virtuales disponibles a cualquier hora desde la comodidad de tu hogar.'
+        title: 'Conservación del Poder Adquisitivo',
+        description: 'Disponible en UDI (actualizable con la inflación) o en dólares para mantener el valor de tu protección.'
       },
       {
-        title: 'Programas de Prevención',
-        description: 'Incluye chequeos preventivos y programas de bienestar para mantener tu salud en óptimas condiciones.'
+        title: 'Descuentos Especiales',
+        description: 'Tarifas preferenciales para mujeres (3 años) y no fumadores (2 años), reconociendo tu mejor expectativa de vida.'
       }
     ],
     faqs: [
       {
-        question: '¿Existe un periodo de espera para ciertas condiciones?',
-        answer: 'Sí, algunas condiciones preexistentes o ciertos procedimientos pueden tener periodos de espera específicos. Estos varían entre 30 días para enfermedades comunes y hasta 24 meses para condiciones más complejas.'
+        question: '¿Qué significa contratar Orvi?',
+        answer: 'Contratar Orvi significa tener garantizada una protección por fallecimiento durante toda tu vida, aprovechar tu etapa productiva para el pago del seguro, y conservar el poder adquisitivo de tu protección gracias a la posibilidad de contratarlo en dólares o UDI.'
       },
       {
-        question: '¿Puedo incluir a mi familia en la misma póliza?',
-        answer: 'Sí, ofrecemos planes familiares que pueden incluir a cónyuge e hijos bajo la misma póliza, con tarifas preferenciales.'
+        question: '¿Qué plazo de pago me conviene más?',
+        answer: 'El plazo ideal depende de tu situación financiera actual y tus metas. Los plazos más cortos (6-10 años) tienen una prima más alta pero terminas de pagar antes. Los plazos más largos (15-20 años o hasta edad 60) ofrecen primas más accesibles distribuidas en más tiempo.'
       },
       {
-        question: '¿Qué no cubre el seguro médico?',
-        answer: 'Generalmente, no se cubren tratamientos estéticos, condiciones preexistentes no declaradas, autolesiones intencionales y ciertos tratamientos experimentales. Los detalles específicos dependen del plan contratado.'
+        question: '¿Qué son los valores garantizados?',
+        answer: 'Orvi genera valores garantizados como el valor en efectivo (disponible en caso de rescate), seguro prorrogado (conserva la suma asegurada por un tiempo limitado) y seguro saldado (reduce la suma asegurada conservando el plazo), que representan el valor de tu póliza a lo largo del tiempo.'
       },
       {
-        question: '¿Cómo funciona el reembolso de gastos médicos?',
-        answer: 'Para servicios fuera de nuestra red, deberás pagar y luego solicitar un reembolso presentando facturas y recetas médicas. El proceso suele tardar entre 5 y 15 días hábiles una vez presentada toda la documentación.'
+        question: '¿Qué beneficios adicionales puedo agregar a mi Orvi?',
+        answer: 'Puedes agregar Beneficio por Muerte Accidental (BMA), Doble Indemnización (DI), Beneficio por Invalidez Total y Permanente (BAIT/BITAE), y el beneficio Adapta para incrementar tu protección. También puedes añadir Aumento de Valor en Efectivo (AVE) para generar un ahorro adicional.'
       }
     ]
   },
-  'seguro-hogar': {
-    title: 'Seguro de Hogar',
-    tagline: 'Protege tu espacio más preciado',
-    description: 'Tu hogar es mucho más que un edificio, es donde vives tus momentos más importantes. Nuestro seguro de hogar protege tanto la estructura como tus pertenencias contra daños, robos y otros imprevistos, para que puedas sentirte seguro en tu espacio.',
-    icon: '/icons/home.svg',
-    color: '#f5b35e',
-    coverageAmount: 'Según el valor declarado de la propiedad',
-    monthlyPayment: 'Desde $250 MXN',
+  'segubeca': {
+    title: 'SeguBeca',
+    tagline: 'El futuro educativo de tus hijos, garantizado',
+    description: 'SeguBeca está diseñado para que, durante el tiempo en que estés protegido, puedas acumular el capital necesario para el pago de la educación universitaria de tu hijo. Además, garantiza que tu hijo reciba este capital aún cuando llegues a faltar o sufras una invalidez.',
+    iconName: 'GraduationCap',
+    color: '#FF5722',
+    coverageAmount: 'Adaptable a la universidad deseada',
+    monthlyPayment: 'Desde $350 USD',
     benefits: [
-      'Cobertura contra incendios',
-      'Protección contra robos',
-      'Daños por fenómenos naturales',
-      'Responsabilidad civil',
-      'Asistencia domiciliaria 24/7',
-      'Cobertura de bienes específicos',
-      'Gastos extrarodinarios de vivienda',
-      'Reparación de electrodomésticos'
+      'Ahorro programado para educación universitaria',
+      'Exención de pago de primas por invalidez o fallecimiento',
+      'Protección por fallecimiento del contratante',
+      'Administración profesional del ahorro acumulado',
+      'Apoyo en Vida (AV) por enfermedad terminal',
+      'Asistencia Médica en EUA (BAM)',
+      'Protección Patrimonial SeguBeca (PPS)',
+      'Certificado de Garantía de Contratación (CGC)'
     ],
     features: [
       {
-        title: 'Protección Integral',
-        description: 'Cobertura tanto para la estructura de tu casa como para tus pertenencias y contenidos.'
+        title: 'Ahorro Programado',
+        description: 'Acumula de forma constante y programada el capital necesario para la educación universitaria de tu hijo.'
       },
       {
-        title: 'Asistencia Inmediata',
-        description: 'Servicio de asistencia domiciliaria para emergencias como plomería, electricidad, cerrajería y más.'
+        title: 'Garantía de Educación',
+        description: 'Si llegas a faltar o sufres una invalidez, SeguBeca cubre los pagos restantes, garantizando que tu hijo reciba el capital planeado.'
       },
       {
-        title: 'Cobertura por Desastres Naturales',
-        description: 'Protección contra daños causados por terremotos, inundaciones, tormentas y otros fenómenos naturales.'
+        title: 'Administración Profesional',
+        description: 'El capital acumulado se entrega en pagos mensuales durante cuatro años con rendimientos adicionales, facilitando el uso eficiente del dinero.'
       },
       {
-        title: 'Responsabilidad Civil',
-        description: 'Cobertura por daños que puedas causar involuntariamente a terceros dentro de tu propiedad.'
+        title: 'Opciones de Protección',
+        description: 'Flexibilidad para elegir protección por fallecimiento durante la vigencia del plan, de forma vitalicia, o por periodos de cinco años renovables.'
       }
     ],
     faqs: [
       {
-        question: '¿Qué tipo de propiedades pueden asegurarse?',
-        answer: 'Podemos asegurar casas particulares, departamentos, condominios y en algunos casos, propiedades en renta. Cada propiedad se evalúa individualmente.'
+        question: '¿Cómo funciona SeguBeca?',
+        answer: 'Con SeguBeca defines el monto que necesitas para la educación de tu hijo considerando el costo de la universidad y gastos adicionales. Realizas pagos programados hasta que tu hijo cumpla 18 años. Al final, recibe el ahorro acumulado más rendimientos en pagos mensuales durante cuatro años o en una sola exhibición.'
       },
       {
-        question: '¿El seguro cubre objetos de valor como joyas o arte?',
-        answer: 'Los objetos de valor especial como joyas, arte o colecciones pueden requerir una declaración específica y en algunos casos una cobertura adicional para estar plenamente protegidos.'
+        question: '¿Qué sucede si fallezco o sufro una invalidez durante el periodo de pago?',
+        answer: 'Si llegas a faltar o sufres una invalidez total y permanente durante el periodo de pagos, SeguBeca cubre los pagos restantes y tu hijo recibirá el ahorro planeado al cumplir 18 años. Además, tu familia recibirá la suma asegurada por fallecimiento.'
       },
       {
-        question: '¿Qué debo hacer en caso de robo?',
-        answer: 'En caso de robo, debes presentar una denuncia ante las autoridades y notificar a la aseguradora lo antes posible, con el inventario de los artículos robados.'
+        question: '¿Mi hijo puede seguir protegido después de terminar el plan?',
+        answer: 'Sí, con el Certificado de Garantía de Contratación (CGC), tu hijo podrá adquirir su propio seguro de vida a los 22, 24, 26, 28 o 30 años, o en momentos especiales (matrimonio, nacimiento de un hijo, compra de casa, etc.) sin requisitos de suscripción.'
       },
       {
-        question: '¿El seguro cubre daños causados por mascotas?',
-        answer: 'Los daños causados por tus propias mascotas a la propiedad generalmente no están cubiertos, pero la responsabilidad civil por daños que tus mascotas puedan causar a terceros sí puede estar incluida en la cobertura.'
+        question: '¿Cómo se entrega el dinero al final del plan?',
+        answer: 'Al final del plan, tienes dos opciones: recibir pagos mensuales más rendimientos durante cuatro años (recomendado para administrar mejor el capital durante la carrera), o recibir el ahorro completo en una sola exhibición al cumplir 18 años.'
       }
     ]
   },
-  'seguro-auto': {
-    title: 'Seguro de Auto',
-    tagline: 'Conduce con total tranquilidad',
-    description: 'Nuestro seguro de auto te ofrece la tranquilidad de manejar sabiendo que estás protegido ante cualquier imprevisto. Con coberturas flexibles que se adaptan a tus necesidades y presupuesto, puedes elegir desde una protección básica hasta la más completa.',
-    icon: '/icons/car.svg',
-    color: '#f87272',
-    coverageAmount: 'Según el valor del vehículo',
-    monthlyPayment: 'Desde $400 MXN',
+  'vida-mujer': {
+    title: 'Vida Mujer',
+    tagline: 'Protección especializada para mujeres',
+    description: 'Vida Mujer es el seguro que brinda un apoyo real a la mujer, dándole la oportunidad de proteger lo más valioso: su salud y a su familia. Disfruta de un ahorro en vida y al mismo tiempo cuenta con apoyo en caso de presentarse alguna enfermedad propia de la mujer. Sus beneficiarios cuentan con un respaldo económico en caso de fallecimiento.',
+    iconName: 'Flower2',
+    color: '#E91E63',
+    coverageAmount: 'Desde $10,000 USD o 35,000 UDI',
+    monthlyPayment: 'Desde $350 USD',
     benefits: [
-      'Daños a terceros',
-      'Cobertura amplia',
-      'Asistencia vial',
-      'Robo total',
-      'Gastos médicos para ocupantes',
-      'Auto sustituto',
-      'Defensa legal',
-      'Pérdida total por daños'
+      'Protección por fallecimiento',
+      'Protección por cáncer femenino',
+      'Generación de ahorros periódicos',
+      'Apoyo económico por matrimonio o nacimiento',
+      'Protección por complicaciones del embarazo',
+      'Apoyo en Vida (AV) por enfermedad terminal',
+      'Asistencia Médica en EUA (BAM)',
+      'Cuidados a Largo Plazo (CLP)'
     ],
     features: [
       {
-        title: 'Asistencia Vial 24/7',
-        description: 'Servicio de asistencia en carretera las 24 horas, incluyendo grúa, cambio de llanta, paso de corriente y más.'
+        title: 'Entrega Periódica de Ahorros',
+        description: 'A partir del 5º año se entrega el 5% de la suma asegurada cada 2 años, y el 80% en el año 20, para un total del 115% de la suma asegurada.'
       },
       {
-        title: 'Cobertura Personalizable',
-        description: 'Elige entre diferentes niveles de cobertura según tus necesidades y presupuesto, desde responsabilidad civil hasta cobertura amplia.'
+        title: 'Protección por Cáncer Femenino',
+        description: 'Indemnización en caso de diagnóstico de cáncer en órganos femeninos como mama, ovario, útero y otros, con pagos según la gravedad del caso.'
       },
       {
-        title: 'Protección a Ocupantes',
-        description: 'Gastos médicos para ti y los ocupantes de tu vehículo en caso de accidente.'
+        title: 'Anticipo por Momentos Especiales',
+        description: 'Si entre el 4° y 5° año de vigencia te casas o tienes un hijo, puedes adelantar el 5% de la suma asegurada contratada.'
       },
       {
-        title: 'App Móvil',
-        description: 'Gestiona tu póliza, reporta siniestros y solicita asistencia directamente desde nuestra aplicación móvil.'
+        title: 'Cobertura por Complicaciones del Embarazo',
+        description: 'Protección opcional para complicaciones como parto prematuro, embarazo ectópico, síndrome de Hellp y problemas del recién nacido.'
       }
     ],
     faqs: [
       {
-        question: '¿Qué tipos de vehículos pueden asegurarse?',
-        answer: 'Aseguramos automóviles particulares, SUVs, pickups, motocicletas y ciertos vehículos comerciales. La elegibilidad depende del año, modelo y estado del vehículo.'
+        question: '¿Qué es la Protección por Cáncer Femenino?',
+        answer: 'Es una cobertura obligatoria que paga un porcentaje de la suma asegurada si se diagnostica cáncer en órganos femeninos. El pago varía según el tipo de tumor: 100% para tumor maligno de mama con metástasis, 47% para tumor maligno de mama localizado, 38% para tumor maligno del ovario, y otros porcentajes para diferentes condiciones.'
       },
       {
-        question: '¿Cómo funciona el deducible?',
-        answer: 'El deducible es el monto que debes pagar antes de que la aseguradora cubra el resto del siniestro. Este porcentaje varía según el tipo de cobertura y se aplica sobre el valor del daño o del vehículo en caso de robo total.'
+        question: '¿Cómo funciona el ahorro en Vida Mujer?',
+        answer: 'El plan tiene una vigencia de 20 años. A partir del 5º año, recibirás cada 2 años el 5% de la suma asegurada contratada (años 5, 7, 9, 11, 13, 15 y 17), y al finalizar el plan (año 20) recibirás el 80% restante, sumando un total del 115% de la suma asegurada.'
       },
       {
-        question: '¿Qué debo hacer en caso de accidente?',
-        answer: 'En caso de accidente, mantén la calma, verifica si hay heridos, notifica a las autoridades si es necesario y contacta inmediatamente a la aseguradora a través de la línea de emergencia o la app.'
+        question: '¿Qué coberturas adicionales puedo contratar?',
+        answer: 'Puedes agregar protección por complicaciones del embarazo (PEP), pérdida de ingreso por invalidez (PII), cuidados a largo plazo (CLP), protección por viudez para tu cónyuge (CPV), y coberturas por invalidez y accidentes, entre otras opciones.'
       },
       {
-        question: '¿El seguro cubre a otros conductores que manejen mi auto?',
-        answer: 'Sí, generalmente la póliza cubre el vehículo independientemente de quién lo conduzca, siempre que tenga licencia válida y la autorización del asegurado.'
+        question: '¿Qué es la cláusula de Protección por Viudez?',
+        answer: 'Es una cobertura opcional que protege a tu cónyuge, pagando una suma asegurada independiente en caso de su fallecimiento durante la vigencia de la póliza. En caso de que tú fallezcas, tu cónyuge puede convertir esta cláusula en un seguro temporal por 20 años sin perder antigüedad.'
       }
     ]
   },
-  'seguro-viaje': {
-    title: 'Seguro de Viaje',
-    tagline: 'Explora el mundo sin preocupaciones',
-    description: 'Nuestro seguro de viaje te ofrece la tranquilidad de disfrutar tus aventuras con protección completa. Desde atención médica internacional hasta cobertura por cancelaciones y pérdida de equipaje, estamos contigo en cada paso de tu viaje.',
-    icon: '/icons/travel.svg',
-    color: '#3abff8',
-    coverageAmount: 'Hasta $1,000,000 USD en gastos médicos',
-    monthlyPayment: 'Desde $30 USD por viaje',
+  'adapta': {
+    title: 'Adapta',
+    tagline: 'Protección flexible con visión de futuro',
+    description: 'Adapta es un beneficio adicional que proporciona protección por fallecimiento a un menor costo. Después de dos años, tienes la opción de convertirlo en un seguro de vida con mayores beneficios, sin presentar requisitos de suscripción y con un descuento en la prima del primer año.',
+    iconName: 'Layers',
+    color: '#2196F3',
+    coverageAmount: 'Desde $30,000 USD o 100,000 UDI',
+    monthlyPayment: 'Tarifa preferencial',
     benefits: [
-      'Atención médica internacional',
-      'Pérdida de equipaje',
-      'Cancelación de viaje',
-      'Asistencia 24/7',
-      'Repatriación médica',
-      'Responsabilidad civil en viaje',
-      'Gastos por demora de vuelo',
-      'Protección de dispositivos electrónicos'
+      'Protección por fallecimiento adicional',
+      'Convertible a un seguro con mayores beneficios',
+      'Sin requisitos de suscripción al convertir',
+      'Descuento en prima del primer año al convertir',
+      'Se puede contratar para familiares directos',
+      'Renovable cada 5 años',
+      'Compatible con otros beneficios adicionales',
+      'Opción de conversión parcial'
     ],
     features: [
       {
-        title: 'Cobertura Mundial',
-        description: 'Protección en cualquier parte del mundo con atención en el idioma local.'
+        title: 'Garantía de Conversión',
+        description: 'Después de dos años de vigencia, puedes convertir tu Adapta a un seguro de vida con mayores beneficios sin presentar requisitos de suscripción, incluso si tu estado de salud ha cambiado.'
       },
       {
-        title: 'Asistencia Médica',
-        description: 'Cobertura para gastos médicos, hospitalización y medicamentos en caso de enfermedad o accidente durante el viaje.'
+        title: 'Descuento al Convertir',
+        description: 'Al convertir tu Adapta, recibes un descuento en la prima del primer año del nuevo seguro: por cada 1,000 unidades de suma asegurada se descontarán 3 unidades.'
       },
       {
-        title: 'Protección de Viaje',
-        description: 'Reembolso por cancelación, interrupción de viaje o demoras significativas.'
+        title: 'Flexibilidad de Conversión',
+        description: 'Puedes convertir tu Adapta a diferentes planes como Imagina Ser, Realiza, Orvi, Star Dotal, Objetivo Vida, Vida Mujer o Nuevo Plenitud.'
       },
       {
-        title: 'Soporte 24/7',
-        description: 'Centro de asistencia disponible todo el día, todos los días, para ayudarte en cualquier emergencia durante tu viaje.'
+        title: 'Protección para Familiares',
+        description: 'Puedes contratar Adapta para tus familiares directos (padres, cónyuge, hermanos e hijos) con sumas aseguradas independientes.'
       }
     ],
     faqs: [
       {
-        question: '¿Cuándo debo contratar el seguro de viaje?',
-        answer: 'Lo ideal es contratar el seguro de viaje inmediatamente después de reservar tu viaje, para obtener cobertura de cancelación desde el inicio. Sin embargo, puedes contratarlo hasta 24 horas antes de tu salida.'
+        question: '¿Cuándo puedo convertir mi Adapta?',
+        answer: 'Puedes solicitar la conversión una vez concluido el segundo año de vigencia de tu Adapta y hasta finalizar tu segundo periodo de 5 años, sin presentar requisitos de asegurabilidad.'
       },
       {
-        question: '¿Cubre condiciones médicas preexistentes?',
-        answer: 'La cobertura de condiciones preexistentes varía según el plan. Algunas pólizas pueden ofrecer cobertura limitada para condiciones estables y controladas. Es importante declarar cualquier condición preexistente al contratar.'
+        question: '¿Puedo convertir solo una parte de mi Adapta?',
+        answer: 'Sí, puedes realizar una conversión parcial. La suma asegurada no convertida puede quedar vigente en la póliza original (si cumple con los mínimos establecidos) o ser cancelada si así lo solicitas o no cumple con los mínimos requeridos.'
       },
       {
-        question: '¿Qué documentación necesito para hacer un reclamo?',
-        answer: 'Generalmente necesitarás prueba del incidente (informe policial para robos, certificado médico para enfermedades), recibos originales de gastos, itinerario de viaje y formulario de reclamo completado. Recomendamos guardar toda la documentación durante el viaje.'
+        question: '¿Qué sucede si fallezco o me invalido antes de convertir?',
+        answer: 'Si el asegurado principal fallece o se invalida, los familiares directos que contrataron Adapta tendrán el derecho de convertir sin requisitos de suscripción a un nuevo seguro de vida. Tendrán 30 días para solicitar la conversión a partir del siniestro.'
       },
       {
-        question: '¿El seguro cubre deportes de aventura?',
-        answer: 'Los planes estándar generalmente cubren actividades recreativas comunes, pero los deportes de aventura o actividades de alto riesgo pueden requerir una cobertura adicional específica que puede añadirse a la póliza.'
+        question: '¿Cómo funciona el BIT Adapta?',
+        answer: 'El BIT Adapta es un beneficio que exenta del pago de primas de la cobertura Adapta si el asegurado principal queda en invalidez total y permanente. Solo se puede contratar si el asegurado principal tiene el BIT del plan básico y se incluye al inicio de vigencia del Adapta.'
       }
     ]
   }
@@ -287,12 +288,17 @@ const insuranceProducts = {
 
 export default function InsuranceDetail() {
   const params = useParams();
-  const { id } = params;
+  const [product, setProduct] = useState(null);
   const [activeTab, setActiveTab] = useState('beneficios');
   const [isVisible, setIsVisible] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [product, setProduct] = useState(null);
   const sectionRef = useRef(null);
+  
+  // Get the current product ID from params
+  const id = params?.id;
+  
+  // Get icon component from Lucide
+  const IconComponent = product ? LucideIcons[product.iconName] : null;
 
   useEffect(() => {
     if (id && insuranceProducts[id]) {
@@ -365,26 +371,25 @@ export default function InsuranceDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-base-200">
+    <main className="min-h-screen bg-base-100">
       <Header />
       
-      {/* Hero Banner */}
-      <section className="pt-32 pb-16" style={{ backgroundColor: `${product.color}15` }}>
+      {/* Hero Section */}
+      <section className="pt-32 pb-12 bg-white">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <div className="flex items-center mb-6">
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="w-full md:w-3/5">
+              <div className="flex items-center mb-4">
                 <div 
-                  className="w-16 h-16 rounded-full flex items-center justify-center mr-4"
-                  style={{ backgroundColor: `${product.color}30` }}
+                  className="w-14 h-14 rounded-full flex items-center justify-center mr-4"
+                  style={{ background: `${product.color}40` }}
                 >
-                  <Image
-                    src={product.icon}
-                    alt={product.title}
-                    width={32}
-                    height={32}
-                    style={{ color: product.color }}
-                  />
+                  {IconComponent && (
+                    <IconComponent 
+                      size={28} 
+                      color={product.color}
+                    />
+                  )}
                 </div>
                 <div>
                   <h1 className="text-3xl md:text-4xl font-bold" style={{ color: product.color }}>
@@ -404,9 +409,12 @@ export default function InsuranceDetail() {
                     className="w-12 h-12 rounded-full flex items-center justify-center mr-4"
                     style={{ backgroundColor: `${product.color}20` }}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: product.color }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    {LucideIcons.BadgeCheck && (
+                      <LucideIcons.BadgeCheck
+                        size={24} 
+                        color={product.color}
+                      />
+                    )}
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Cobertura hasta</p>
@@ -419,9 +427,12 @@ export default function InsuranceDetail() {
                     className="w-12 h-12 rounded-full flex items-center justify-center mr-4"
                     style={{ backgroundColor: `${product.color}20` }}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: product.color }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z" />
-                    </svg>
+                    {LucideIcons.Calendar && (
+                      <LucideIcons.Calendar
+                        size={24} 
+                        color={product.color}
+                      />
+                    )}
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Pago mensual</p>
@@ -609,7 +620,8 @@ export default function InsuranceDetail() {
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                      <LucideIcons.User size={16} className="mr-2" />
                       Nombre completo
                     </label>
                     <input
@@ -621,7 +633,8 @@ export default function InsuranceDetail() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                      <LucideIcons.Mail size={16} className="mr-2" />
                       Correo electrónico
                     </label>
                     <input
@@ -636,7 +649,8 @@ export default function InsuranceDetail() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                      <LucideIcons.Phone size={16} className="mr-2" />
                       Teléfono
                     </label>
                     <input
@@ -648,7 +662,8 @@ export default function InsuranceDetail() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="contact-time" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="contact-time" className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                      <LucideIcons.Clock size={16} className="mr-2" />
                       Mejor horario para contactarte
                     </label>
                     <select
@@ -664,7 +679,8 @@ export default function InsuranceDetail() {
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                    <LucideIcons.MessageSquare size={16} className="mr-2" />
                     Mensaje (opcional)
                   </label>
                   <textarea
@@ -726,6 +742,6 @@ export default function InsuranceDetail() {
           </div>
         </div>
       </footer>
-    </div>
+    </main>
   );
 } 

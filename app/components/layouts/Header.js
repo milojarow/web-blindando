@@ -25,7 +25,9 @@ export default function Header() {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-secondary opacity-100 shadow-lg py-2' : 'bg-secondary opacity-100 py-4'
+        isScrolled 
+          ? 'backdrop-blur-md bg-secondary/85 shadow-lg py-2' 
+          : 'backdrop-blur-sm bg-secondary/70 py-4'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -97,7 +99,7 @@ export default function Header() {
 
         {/* Mobile Navigation Overlay */}
         {isMenuOpen && (
-          <div className="fixed inset-0 bg-base-300 z-50 lg:hidden flex flex-col items-center justify-center">
+          <div className="fixed inset-0 backdrop-blur-lg bg-base-300/95 z-50 lg:hidden flex flex-col items-center justify-center">
             <button 
               className="absolute top-6 right-6" 
               onClick={() => setIsMenuOpen(false)}

@@ -11,7 +11,7 @@ const insuranceProducts = [
     id: 'seguro-de-vida',
     title: 'Seguro de Vida',
     description: 'Protege a tus seres queridos financieramente cuando ya no estés con ellos.',
-    icon: '/icons/life.svg',
+    iconName: 'HeartPulse',
     color: '#FFC107',
     benefits: [
       'Cobertura por fallecimiento',
@@ -21,55 +21,55 @@ const insuranceProducts = [
     ],
   },
   {
-    id: 'seguro-medico',
-    title: 'Seguro Médico',
-    description: 'Obtén la mejor atención médica sin preocuparte por los gastos inesperados.',
-    icon: '/icons/health.svg',
-    color: '#1976D2',
+    id: 'orvi',
+    title: 'Orvi',
+    description: 'Seguro de Vida diseñado para personas responsables que desean proteger a su familia con una protección vitalicia.',
+    iconName: 'ShieldCheck',
+    color: '#9C27B0',
     benefits: [
-      'Consultas médicas',
-      'Hospitalización',
-      'Medicamentos',
-      'Atención de emergencias',
+      'Cobertura por fallecimiento vitalicia',
+      'Protección constante a costo fijo',
+      'Conservación del poder adquisitivo',
+      'Tarifas preferenciales',
     ],
   },
   {
-    id: 'seguro-hogar',
-    title: 'Seguro de Hogar',
-    description: 'Protege tu casa y tus pertenencias contra daños, robos y otros imprevistos.',
-    icon: '/icons/home.svg',
-    color: '#F57C00',
+    id: 'segubeca',
+    title: 'SeguBeca',
+    description: 'Forma y administra un capital para la educación universitaria de tu hijo, al mismo tiempo que proteges tu vida.',
+    iconName: 'GraduationCap',
+    color: '#FF5722',
     benefits: [
-      'Cobertura contra incendios',
-      'Protección contra robos',
-      'Daños por fenómenos naturales',
-      'Responsabilidad civil',
+      'Ahorro para educación universitaria',
+      'Protección por fallecimiento',
+      'Administración profesional del ahorro',
+      'Beneficios por invalidez',
     ],
   },
   {
-    id: 'seguro-auto',
-    title: 'Seguro de Auto',
-    description: 'Maneja con tranquilidad sabiendo que estás protegido ante cualquier accidente.',
-    icon: '/icons/car.svg',
-    color: '#4CAF50',
+    id: 'vida-mujer',
+    title: 'Vida Mujer',
+    description: 'Seguro que brinda protección especializada para mujeres, con beneficios por cáncer femenino y generación de ahorros periódicos.',
+    iconName: 'Flower2',
+    color: '#E91E63',
     benefits: [
-      'Daños a terceros',
-      'Cobertura amplia',
-      'Asistencia vial',
-      'Robo total',
+      'Protección por cáncer femenino',
+      'Ahorro con entregas periódicas',
+      'Protección por fallecimiento',
+      'Apoyo por complicaciones en embarazo',
     ],
   },
   {
-    id: 'seguro-viaje',
-    title: 'Seguro de Viaje',
-    description: 'Viaja sin preocupaciones con cobertura médica y de equipaje en todo el mundo.',
-    icon: '/icons/travel.svg',
+    id: 'adapta',
+    title: 'Adapta',
+    description: 'Beneficio adicional que proporciona protección por fallecimiento a un menor costo, con opción de convertirlo en un seguro con mayores beneficios.',
+    iconName: 'Layers',
     color: '#2196F3',
     benefits: [
-      'Atención médica internacional',
-      'Pérdida de equipaje',
-      'Cancelación de viaje',
-      'Asistencia 24/7',
+      'Protección por fallecimiento adicional',
+      'Convertible a un seguro con mayores beneficios',
+      'Sin requisitos de suscripción al convertir',
+      'Descuento en prima del primer año al convertir',
     ],
   },
 ];
@@ -135,7 +135,7 @@ export default function Home() {
                   id={product.id}
                   title={product.title}
                   description={product.description}
-                  icon={product.icon}
+                  iconName={product.iconName}
                   benefits={product.benefits}
                   color={product.color}
                 />
@@ -342,10 +342,10 @@ export default function Home() {
               <h4 className="text-lg font-semibold mb-6">Nuestros Seguros</h4>
               <ul className="space-y-4">
                 <li><Link href="/seguros/seguro-de-vida" className="text-text-light/80 hover:text-text-light">Seguro de Vida</Link></li>
-                <li><Link href="/seguros/seguro-medico" className="text-text-light/80 hover:text-text-light">Seguro Médico</Link></li>
-                <li><Link href="/seguros/seguro-hogar" className="text-text-light/80 hover:text-text-light">Seguro de Hogar</Link></li>
-                <li><Link href="/seguros/seguro-auto" className="text-text-light/80 hover:text-text-light">Seguro de Auto</Link></li>
-                <li><Link href="/seguros/seguro-viaje" className="text-text-light/80 hover:text-text-light">Seguro de Viaje</Link></li>
+                <li><Link href="/seguros/orvi" className="text-text-light/80 hover:text-text-light">Orvi</Link></li>
+                <li><Link href="/seguros/segubeca" className="text-text-light/80 hover:text-text-light">SeguBeca</Link></li>
+                <li><Link href="/seguros/vida-mujer" className="text-text-light/80 hover:text-text-light">Vida Mujer</Link></li>
+                <li><Link href="/seguros/adapta" className="text-text-light/80 hover:text-text-light">Adapta</Link></li>
               </ul>
             </div>
             

@@ -1,12 +1,15 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 import Button from '../buttons/Button';
+import * as LucideIcons from 'lucide-react';
 
-export default function CardInsurance({ id, title, description, icon, benefits, color = "#FFC107" }) {
+export default function CardInsurance({ id, title, description, iconName, benefits, color = "#FFC107" }) {
   const cardRef = useRef(null);
+  
+  // Dynamically get the icon component from lucide-react
+  const IconComponent = LucideIcons[iconName];
 
   const onMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -39,13 +42,12 @@ export default function CardInsurance({ id, title, description, icon, benefits, 
             className="w-14 h-14 rounded-full flex items-center justify-center mr-4"
             style={{ background: `${color}40` }}
           >
-            <Image
-              src={icon}
-              alt={title}
-              width={32}
-              height={32}
-              className="text-primary"
-            />
+            {IconComponent && (
+              <IconComponent 
+                size={32} 
+                color={color}
+              />
+            )}
           </div>
           <h3 className="text-xl font-bold" style={{ color }}>
             {title}
