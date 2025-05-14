@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from './components/layouts/Header';
 import CardInsurance from './components/cards/CardInsurance';
+import CardInfo from './components/cards/CardInfo';
 import LoadingSpinner from './components/layouts/LoadingSpinner';
 import Button from './components/buttons/Button';
 
@@ -197,29 +198,20 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <h4 className="text-xl font-semibold mb-4">Nuestra Visión</h4>
-                <p className="text-gray-700 text-lg">
-                  Ser reconocidos como la compañía aseguradora más confiable y cercana del mercado, destacándonos por 
-                  nuestro excelente servicio, soluciones innovadoras y compromiso genuino con el bienestar de nuestros clientes.
-                </p>
-              </div>
+              <CardInfo 
+                title="Nuestra Visión"
+                content="Ser reconocidos como la compañía aseguradora más confiable y cercana del mercado, destacándonos por nuestro excelente servicio, soluciones innovadoras y compromiso genuino con el bienestar de nuestros clientes."
+              />
               
-              <div className="text-center">
-                <h4 className="text-xl font-semibold mb-4">Nuestra Misión</h4>
-                <p className="text-gray-700 text-lg">
-                  Brindar protección financiera integral que permita a nuestros clientes vivir con tranquilidad, 
-                  sabiendo que sus seres queridos, bienes y patrimonio están resguardados ante cualquier imprevisto.
-                </p>
-              </div>
+              <CardInfo 
+                title="Nuestra Misión"
+                content="Brindar protección financiera integral que permita a nuestros clientes vivir con tranquilidad, sabiendo que sus seres queridos, bienes y patrimonio están resguardados ante cualquier imprevisto."
+              />
               
-              <div className="text-center">
-                <h4 className="text-xl font-semibold mb-4">Nuestro Compromiso</h4>
-                <p className="text-gray-700 text-lg">
-                  Nos comprometemos a ofrecer un servicio honesto, transparente y de calidad. Trabajamos cada día para que 
-                  nuestros clientes sientan la seguridad de contar con un aliado que responderá cuando más lo necesiten.
-                </p>
-              </div>
+              <CardInfo 
+                title="Nuestro Compromiso"
+                content="Nos comprometemos a ofrecer un servicio honesto, transparente y de calidad. Trabajamos cada día para que nuestros clientes sientan la seguridad de contar con un aliado que responderá cuando más lo necesiten."
+              />
             </div>
           </div>
         </div>
