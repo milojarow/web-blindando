@@ -112,11 +112,14 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-base-200 -mb-10 rounded-t-[50%] z-10"></div>
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-16 -mb-10 rounded-t-[50%] z-10"
+          style={{ backgroundColor: "#F0F7FF" }}
+        ></div>
       </section>
       
       {/* Insurance Products Section */}
-      <section id="seguros" className="py-20 bg-base-200">
+      <section id="seguros" className="py-20" style={{ backgroundColor: "#F0F7FF" }}>
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
