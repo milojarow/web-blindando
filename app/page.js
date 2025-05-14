@@ -160,7 +160,7 @@ export default function Home() {
           <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 md:p-12">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-[#333333] mb-8">
-                Quiénes Somos
+                Acerca de Blindando Sueños
               </h3>
             </div>
 
