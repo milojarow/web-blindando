@@ -170,13 +170,12 @@ export default function Home() {
                   En <span className="text-blue-600 font-medium">Blindando Sueños</span>, nos dedicamos a proteger lo que más valoras.
                 </p>
                 <p className="text-gray-700 mb-6">
-                  Somos una empresa con más de 20 años de experiencia en el sector de seguros,
-                  comprometidos con brindar soluciones personalizadas que se adaptan a las
-                  necesidades cambiantes de nuestros clientes.
+                  Somos una empresa comprometida con brindar soluciones personalizadas que se adaptan a las
+                  necesidades cambiantes de nuestros clientes en el sector de seguros.
                 </p>
                 <p className="text-gray-700">
-                  Nuestra misión es ofrecer tranquilidad financiera a través de productos innovadores
-                  y un servicio de excelencia, construyendo relaciones de confianza a largo plazo.
+                  Trabajamos cada día para que nuestros clientes sientan la seguridad de contar con un aliado 
+                  que responderá cuando más lo necesiten, construyendo relaciones de confianza a largo plazo.
                 </p>
               </div>
 
@@ -201,21 +200,24 @@ export default function Home() {
               <div className="text-center">
                 <h4 className="text-xl font-semibold mb-4">Nuestra Visión</h4>
                 <p className="text-gray-700">
-                  Ser la empresa líder en soluciones de protección financiera, reconocida por su innovación y compromiso con el cliente.
+                  Ser reconocidos como la compañía aseguradora más confiable y cercana del mercado, destacándonos por 
+                  nuestro excelente servicio, soluciones innovadoras y compromiso genuino con el bienestar de nuestros clientes.
                 </p>
               </div>
               
               <div className="text-center">
-                <h4 className="text-xl font-semibold mb-4">Nuestros Valores</h4>
+                <h4 className="text-xl font-semibold mb-4">Nuestra Misión</h4>
                 <p className="text-gray-700">
-                  Integridad, excelencia, innovación y compromiso son los pilares que guían nuestras acciones diarias.
+                  Brindar protección financiera integral que permita a nuestros clientes vivir con tranquilidad, 
+                  sabiendo que sus seres queridos, bienes y patrimonio están resguardados ante cualquier imprevisto.
                 </p>
               </div>
               
               <div className="text-center">
                 <h4 className="text-xl font-semibold mb-4">Nuestro Compromiso</h4>
                 <p className="text-gray-700">
-                  Brindar soluciones personalizadas que realmente se adapten a las necesidades específicas de cada cliente.
+                  Nos comprometemos a ofrecer un servicio honesto, transparente y de calidad. Trabajamos cada día para que 
+                  nuestros clientes sientan la seguridad de contar con un aliado que responderá cuando más lo necesiten.
                 </p>
               </div>
             </div>
