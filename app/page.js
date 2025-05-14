@@ -149,56 +149,75 @@ export default function Home() {
       </section>
       
       {/* About Us Section */}
-      <section id="nosotros" className="py-20 bg-[#424242]">
+      <section id="nosotros" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-                Sobre Blindando Sueños
-              </h2>
-              
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-text-light mb-2">
-                  Nuestra Misión
-                </h3>
-                <p className="text-text-light/90 mb-4">
-                  Brindar protección financiera integral que permita a nuestros clientes vivir con tranquilidad, 
-                  sabiendo que sus seres queridos, bienes y patrimonio están resguardados ante cualquier imprevisto.
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-6">
+              Quiénes Somos
+            </h2>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 md:p-12">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-[#333333] mb-8">
+                Quiénes Somos
+              </h3>
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-10 items-center mb-10">
+              <div className="lg:w-2/3">
+                <p className="text-gray-700 mb-6">
+                  En <span className="text-blue-600 font-medium">Blindando Sueños</span>, nos dedicamos a proteger lo que más valoras.
+                </p>
+                <p className="text-gray-700 mb-6">
+                  Somos una empresa con más de 20 años de experiencia en el sector de seguros,
+                  comprometidos con brindar soluciones personalizadas que se adaptan a las
+                  necesidades cambiantes de nuestros clientes.
+                </p>
+                <p className="text-gray-700">
+                  Nuestra misión es ofrecer tranquilidad financiera a través de productos innovadores
+                  y un servicio de excelencia, construyendo relaciones de confianza a largo plazo.
                 </p>
               </div>
-              
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-text-light mb-2">
-                  Nuestra Visión
-                </h3>
-                <p className="text-text-light/90 mb-4">
-                  Ser reconocidos como la compañía aseguradora más confiable y cercana del mercado, destacándonos por 
-                  nuestro excelente servicio, soluciones innovadoras y compromiso genuino con el bienestar de nuestros clientes.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-text-light mb-2">
-                  Nuestro Compromiso
-                </h3>
-                <p className="text-text-light/90 mb-4">
-                  Nos comprometemos a ofrecer un servicio honesto, transparente y de calidad. Trabajamos cada día para que 
-                  nuestros clientes sientan la seguridad de contar con un aliado que responderá cuando más lo necesiten.
-                </p>
+
+              <div className="lg:w-1/3 flex justify-center">
+                <div className="relative w-64 h-64">
+                  <div className="absolute inset-0 rounded-full border-[6px] border-blue-500"></div>
+                  <div className="absolute inset-0 rounded-full border-[6px] border-transparent border-t-yellow-400 border-r-yellow-400"></div>
+                  <div className="absolute inset-[6px] overflow-hidden rounded-full">
+                    <Image 
+                      src="/circle_profile_picture.jpg"
+                      alt="Ejecutivo de Blindando Sueños"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-            
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl">
-              <Image 
-                src="/circle_profile_picture.jpg"
-                alt="Sobre Blindando Sueños"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }}
-                className="rounded-lg"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/30"></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div className="text-center">
+                <h4 className="text-xl font-semibold mb-4">Nuestra Visión</h4>
+                <p className="text-gray-700">
+                  Ser la empresa líder en soluciones de protección financiera, reconocida por su innovación y compromiso con el cliente.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <h4 className="text-xl font-semibold mb-4">Nuestros Valores</h4>
+                <p className="text-gray-700">
+                  Integridad, excelencia, innovación y compromiso son los pilares que guían nuestras acciones diarias.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <h4 className="text-xl font-semibold mb-4">Nuestro Compromiso</h4>
+                <p className="text-gray-700">
+                  Brindar soluciones personalizadas que realmente se adapten a las necesidades específicas de cada cliente.
+                </p>
+              </div>
             </div>
           </div>
         </div>
