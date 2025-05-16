@@ -92,9 +92,11 @@ export default function Header() {
           >
             Contacto
           </Link>
+          {/* Login button temporarily hidden
           <Button href="/api/auth/signin" variant="primary" className="ml-4">
             Iniciar Sesión
           </Button>
+          */}
         </nav>
 
         {/* Mobile Navigation Overlay */}
@@ -148,6 +150,7 @@ export default function Header() {
               >
                 Contacto
               </Link>
+              {/* Login button temporarily hidden
               <Button 
                 href="/api/auth/signin" 
                 variant="primary"
@@ -156,6 +159,7 @@ export default function Header() {
               >
                 Iniciar Sesión
               </Button>
+              */}
             </nav>
           </div>
         )}
