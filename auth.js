@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import ResendProvider from "next-auth/providers/resend";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "./libs/mongo";
 import connectMongo from "./libs/mongoose";
@@ -48,12 +49,40 @@ const config = {
       }
     }),
     
-    // Resend provider commented out as requested
-    // Resend({
-    //   apiKey: process.env.RESEND_KEY,
-    //   from: "noreply@resend.codefastsaas.com",
-    //   name: "Email",
-    // }),
+    // Resend provider for magic link authentication
+    ResendProvider({
+      apiKey: process.env.RESEND_API_KEY,
+      from: process.env.RESEND_FROM,
+      name: "Email Link",
+      server: {
+        host: process.env.NEXTAUTH_URL,
+        port: 443,
+        auth: {
+          user: '',
+          pass: '',
+        },
+      },
+      sendVerificationRequest: async ({ identifier, url, provider }) => {
+        // Custom function to send the verification request
+        // We'll use our own API route to handle this
+        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/resend`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: identifier,
+            url,
+            host: new URL(process.env.NEXTAUTH_URL).host,
+          }),
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(`Error sending magic link: ${error.error}`);
+        }
+      },
+    }),
     
     // Google OAuth provider
     GoogleProvider({
