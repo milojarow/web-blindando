@@ -4,32 +4,27 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Dashboard() {
-  const [userName, setUserName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
-    // Check if user is logged in
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const userEmail = localStorage.getItem('userEmail');
-
-    if (isLoggedIn !== 'true') {
+    // Check if user is authenticated
+    if (status === 'unauthenticated') {
       router.push('/login');
-    } else {
-      setUserName(userEmail ? userEmail.split('@')[0] : 'Usuario');
+    } else if (status === 'authenticated') {
       setIsLoading(false);
     }
-  }, [router]);
+  }, [status, router]);
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('userEmail');
-    router.push('/login');
+    signOut({ redirect: true, callbackUrl: '/login' });
   };
 
-  if (isLoading) {
+  if (isLoading || status === 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center bg-base-200">
         <div className="loading-spinner">
@@ -66,7 +61,9 @@ export default function Dashboard() {
           </div>
           
           <div className="flex items-center space-x-6">
-            <span className="hidden md:inline-block">Bienvenido, {userName}</span>
+            <span className="hidden md:inline-block">
+              Bienvenido, {session?.user?.name || session?.user?.email?.split('@')[0] || 'Usuario'}
+            </span>
             <button 
               onClick={handleLogout}
               className="px-4 py-2 rounded-md bg-white text-primary hover:bg-white/90 transition-colors font-medium"

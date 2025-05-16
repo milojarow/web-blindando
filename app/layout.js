@@ -1,6 +1,7 @@
 import './globals.css';
 import { Suspense } from 'react';
 import LoadingSpinner from './components/layouts/LoadingSpinner';
+import { Providers } from './providers';
 
 export const metadata = {
   title: 'Blindando Sueños | Seguros para proteger lo que más importa',
@@ -20,9 +21,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className="min-h-screen bg-base-200">
-        <Suspense fallback={<LoadingSpinner />}>
-          {children}
-        </Suspense>
+        <Providers>
+          <Suspense fallback={<LoadingSpinner />}>
+            {children}
+          </Suspense>
+        </Providers>
       </body>
     </html>
   );

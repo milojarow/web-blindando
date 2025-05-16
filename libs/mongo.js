@@ -1,20 +1,15 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient } from "mongodb";
 
 // Verificar que existe la variable de entorno
-if (!process.env.MONGO_URI) {
-  throw new Error('Invalid/Missing environment variable: "MONGO_URI"');
+if (!process.env.MONGODB_URI) {
+  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
 }
 
-const uri = process.env.MONGO_URI;
-const options = {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-};
+const uri = process.env.MONGODB_URI;
+const options = {};
 
 // Cliente global compartido para reutilización de conexiones
+let client;
 let clientPromise;
 
 // En desarrollo, usamos una variable global para preservar la conexión
@@ -22,13 +17,13 @@ let clientPromise;
 if (process.env.NODE_ENV === "development") {
   // En este ámbito, `global` es el objeto global de Node.js
   if (!global._mongoClientPromise) {
-    const client = new MongoClient(uri, options);
+    client = new MongoClient(uri, options);
     global._mongoClientPromise = client.connect();
   }
   clientPromise = global._mongoClientPromise;
 } else {
   // En producción, es mejor no usar una variable global
-  const client = new MongoClient(uri, options);
+  client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }
 
