@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "./libs/mongo";
 import connectMongo from "./libs/mongoose";
@@ -54,11 +55,18 @@ const config = {
     //   name: "Email",
     // }),
     
-    // Google provider commented out as requested
-    // Google({
-    //   clientId: process.env.GOOGLE_ID,
-    //   clientSecret: process.env.GOOGLE_SECRET,
-    // }),
+    // Google OAuth provider
+    GoogleProvider({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
+    }),
   ],
   adapter: MongoDBAdapter(clientPromise),
   pages: {
@@ -68,10 +76,16 @@ const config = {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
+    async jwt({ token, user, account }) {
+      // Initial sign in
+      if (account && user) {
+        return {
+          ...token,
+          id: user.id,
+          role: user.role,
+          accessToken: account.access_token,
+          provider: account.provider,
+        };
       }
       return token;
     },
@@ -79,6 +93,7 @@ const config = {
       if (token) {
         session.user.id = token.id;
         session.user.role = token.role;
+        session.user.provider = token.provider;
       }
       return session;
     }
