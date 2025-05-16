@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import { signIn, getCsrfToken } from 'next-auth/react';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -13,7 +13,16 @@ export default function SignInPage() {
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isMagicLinkLoading, setIsMagicLinkLoading] = useState(false);
+  const [csrfToken, setCsrfToken] = useState('');
   const router = useRouter();
+
+  useEffect(() => {
+    async function loadCsrfToken() {
+      const token = await getCsrfToken();
+      setCsrfToken(token);
+    }
+    loadCsrfToken();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,10 +35,17 @@ export default function SignInPage() {
         redirect: false,
         email,
         password,
+        csrfToken,
       });
 
       if (result?.error) {
-        setError(result.error);
+        if (result.error === 'Usuario no encontrado') {
+          setError('No existe una cuenta con este correo electrónico');
+        } else if (result.error === 'Contraseña incorrecta') {
+          setError('La contraseña ingresada es incorrecta');
+        } else {
+          setError(result.error);
+        }
         setIsLoading(false);
         return;
       }
@@ -58,6 +74,7 @@ export default function SignInPage() {
       const result = await signIn('resend', {
         email,
         redirect: false,
+        csrfToken,
       });
 
       if (result?.error) {
@@ -111,6 +128,7 @@ export default function SignInPage() {
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <input name="csrfToken" type="hidden" value={csrfToken} />
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -179,9 +197,9 @@ export default function SignInPage() {
           <div>
             <button
               type="submit"
-              disabled={isLoading}
+              disabled={isLoading || !csrfToken}
               className={`group relative w-full flex justify-center py-3 px-4 border border-transparent rounded-md text-white font-medium ${
-                isLoading 
+                isLoading || !csrfToken
                   ? 'bg-primary/70 cursor-not-allowed' 
                   : 'bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary'
               }`}
@@ -194,6 +212,8 @@ export default function SignInPage() {
                   </svg>
                   Iniciando sesión...
                 </span>
+              ) : !csrfToken ? (
+                'Cargando...'
               ) : (
                 'Iniciar sesión'
               )}
@@ -212,8 +232,9 @@ export default function SignInPage() {
           <div className="grid grid-cols-1 gap-3">
             <button
               type="button"
-              onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
-              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              onClick={() => signIn('google', { callbackUrl: '/dashboard', csrfToken })}
+              disabled={!csrfToken}
+              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M23.766 12.2764C23.766 11.4607 23.6999 10.6406 23.5588 9.83807H12.24V14.4591H18.7217C18.4528 15.9494 17.5885 17.2678 16.323 18.1056V21.1039H20.19C22.4608 19.0139 23.766 15.9274 23.766 12.2764Z" fill="#4285F4"/>
@@ -227,8 +248,8 @@ export default function SignInPage() {
             <button
               type="button"
               onClick={handleMagicLinkSignIn}
-              disabled={isMagicLinkLoading}
-              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              disabled={isMagicLinkLoading || !csrfToken}
+              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isMagicLinkLoading ? (
                 <span className="flex items-center">
@@ -253,7 +274,7 @@ export default function SignInPage() {
         <div className="text-center text-sm">
           <p className="text-gray-600">
             ¿No tienes una cuenta?{' '}
-            <Link href="#" className="font-medium text-primary hover:text-primary/80">
+            <Link href="/api/auth/signup" className="font-medium text-primary hover:text-primary/80">
               Regístrate aquí
             </Link>
           </p>
