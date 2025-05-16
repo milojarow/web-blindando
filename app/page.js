@@ -488,15 +488,34 @@ export default function Home() {
                   href="https://maps.app.goo.gl/Ta5PveHfWEhSbodK6" 
                   target="_blank"
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-2 text-white font-medium rounded-lg px-4 py-2.5 transition-all shadow-md hover:shadow-lg"
+                  className="google-maps-btn inline-flex items-center gap-2 text-white font-medium rounded-lg px-4 py-2.5 transition-all shadow-md hover:shadow-lg overflow-hidden"
                   style={{ 
-                    background: "linear-gradient(135deg, #4285F4 0%, #34A853 50%, #FBBC05 75%, #EA4335 100%)",
-                    border: "1px solid rgba(0,0,0,0.1)"
+                    background: "linear-gradient(135deg, #4285F4 0%, #34A853 33%, #FBBC05 66%, #EA4335 100%, #4285F4 133%, #34A853 166%, #FBBC05 199%, #EA4335 233%)",
+                    backgroundSize: "300% 100%",
+                    border: "1px solid rgba(0,0,0,0.1)",
+                    position: "relative"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.animation = "spinGradient 1.2s ease-in-out";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.animation = "none";
+                    // Force a reflow to ensure animation can trigger again
+                    void e.currentTarget.offsetWidth;
                   }}
                 >
-                  <MapPin size={20} />
-                  <span>Ver en Google Maps</span>
+                  <MapPin size={20} className="relative z-10" />
+                  <span className="relative z-10">Ver en Google Maps</span>
                 </a>
+                <style jsx global>{`
+                  @keyframes spinGradient {
+                    0% { background-position: 0% 50%; }
+                    100% { background-position: 100% 50%; }
+                  }
+                  .google-maps-btn:hover {
+                    animation: spinGradient 1.2s ease-in-out;
+                  }
+                `}</style>
               </div>
               <ContactItem 
                 title="Horario de oficinas" 
