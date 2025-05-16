@@ -4,7 +4,7 @@ import {
   createUser, 
   countUsers, 
   searchUsers 
-} from "@/models/User";
+} from "../../../models/User";
 
 export async function GET(request) {
   try {

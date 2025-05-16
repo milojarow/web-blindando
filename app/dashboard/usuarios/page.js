@@ -1,5 +1,5 @@
-import { findAllUsers } from "@/models/User";
-import FormCreateUser from "@/app/components/forms/FormCreateUser";
+import { findAllUsers } from "../../../models/User";
+import FormCreateUser from "../../components/forms/FormCreateUser";
 import { Suspense } from "react";
 
 export const dynamic = "force-dynamic"; // Asegura que la página siempre sea generada dinámicamente

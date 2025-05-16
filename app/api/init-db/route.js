@@ -1,4 +1,4 @@
-import { getDb } from "@/models/User";
+import { getDb } from "../../../models/User";
 
 export async function GET() {
   try {

@@ -1,4 +1,4 @@
-import clientPromise from "@/libs/mongo";
+import clientPromise from "../../../libs/mongo";
 
 export async function GET() {
   try {
