@@ -65,7 +65,11 @@ const config = {
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         // Custom function to send the verification request
         // We'll use our own API route to handle this
-        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/resend`, {
+        // Determine the base URL (works in both dev and production)
+        const baseUrl = process.env.NEXTAUTH_URL || 
+                       (typeof window !== 'undefined' ? window.location.origin : 'https://blindandosuenos.com');
+        
+        const response = await fetch(`${baseUrl}/api/auth/resend`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -73,7 +77,8 @@ const config = {
           body: JSON.stringify({
             email: identifier,
             url,
-            host: new URL(process.env.NEXTAUTH_URL).host,
+            // Extract host without protocol
+            host: new URL(baseUrl).host,
           }),
         });
 
