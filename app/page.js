@@ -480,9 +480,24 @@ export default function Home() {
             >
               <ContactItem 
                 title="Oficina Principal" 
-                content="C. Carlo Collodi 321, Sector Colinas Elite, Lomas del Real de Jarachina Sur, 88730 Reynosa, Tamps., México" 
+                content="Ote. 1 70, Las Cumbres, 88740 Reynosa, Tamps." 
                 isLink={false} 
               />
+              <div className="mt-2 mb-4">
+                <a 
+                  href="https://maps.app.goo.gl/Ta5PveHfWEhSbodK6" 
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center gap-2 text-white font-medium rounded-lg px-4 py-2.5 transition-all shadow-md hover:shadow-lg"
+                  style={{ 
+                    background: "linear-gradient(135deg, #4285F4 0%, #34A853 50%, #FBBC05 75%, #EA4335 100%)",
+                    border: "1px solid rgba(0,0,0,0.1)"
+                  }}
+                >
+                  <MapPin size={20} />
+                  <span>Ver en Google Maps</span>
+                </a>
+              </div>
               <ContactItem 
                 title="Horario de oficinas" 
                 content="Lun - Vie: 10:00 AM - 4:00 PM" 
