@@ -14,14 +14,14 @@ export default function Dashboard() {
   useEffect(() => {
     // Check if user is authenticated
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push('/api/auth/signin');
     } else if (status === 'authenticated') {
       setIsLoading(false);
     }
   }, [status, router]);
 
   const handleLogout = () => {
-    signOut({ redirect: true, callbackUrl: '/login' });
+    signOut({ redirect: true, callbackUrl: '/api/auth/signin' });
   };
 
   if (isLoading || status === 'loading') {

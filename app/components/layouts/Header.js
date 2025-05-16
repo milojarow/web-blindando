@@ -92,7 +92,7 @@ export default function Header() {
           >
             Contacto
           </Link>
-          <Button href="/login" variant="primary" className="ml-4">
+          <Button href="/api/auth/signin" variant="primary" className="ml-4">
             Iniciar Sesión
           </Button>
         </nav>
@@ -149,7 +149,7 @@ export default function Header() {
                 Contacto
               </Link>
               <Button 
-                href="/login" 
+                href="/api/auth/signin" 
                 variant="primary"
                 className="mt-4"
                 onClick={() => setIsMenuOpen(false)}

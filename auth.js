@@ -62,7 +62,7 @@ const config = {
   ],
   adapter: MongoDBAdapter(clientPromise),
   pages: {
-    signIn: '/login',
+    signIn: '/api/auth/signin',
   },
   session: {
     strategy: "jwt",
