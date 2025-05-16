@@ -255,7 +255,7 @@ export default function Home() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-[#212121]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-[#212121]">
               Protegemos lo que más valoras.
               <br />
               <span className="text-primary">Es nuestra prioridad</span>
@@ -326,14 +326,14 @@ export default function Home() {
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-6">
               Quiénes Somos
-            </h2>
+              </h2>
           </div>
 
           <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 md:p-12">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-[#333333] mb-8">
                 Acerca de Blindando Sueños
-              </h3>
+                </h3>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-10 items-center mb-10">
@@ -350,7 +350,7 @@ export default function Home() {
                   que responderá cuando más lo necesiten, construyendo relaciones de confianza a largo plazo.
                 </p>
               </div>
-
+              
               <div className="lg:w-1/3 flex justify-center">
                 <div className="relative w-64 h-64 group cursor-pointer">
                   <div 
@@ -397,7 +397,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <CardInfo 
                 title="Nuestra Visión"
@@ -488,32 +488,46 @@ export default function Home() {
                   href="https://maps.app.goo.gl/Ta5PveHfWEhSbodK6" 
                   target="_blank"
                   rel="noopener noreferrer" 
-                  className="google-maps-btn inline-flex items-center gap-2 text-white font-medium rounded-lg px-4 py-2.5 transition-all shadow-md hover:shadow-lg overflow-hidden"
+                  className="google-maps-btn inline-flex items-center gap-2 text-white font-medium rounded-lg px-4 py-2.5 shadow-md hover:shadow-lg overflow-hidden"
                   style={{ 
-                    background: "linear-gradient(135deg, #4285F4 0%, #34A853 33%, #FBBC05 66%, #EA4335 100%, #4285F4 133%, #34A853 166%, #FBBC05 199%, #EA4335 233%)",
-                    backgroundSize: "300% 100%",
+                    background: "linear-gradient(90deg, #4285F4 0%, #34A853 25%, #FBBC05 50%, #EA4335 75%, #4285F4 100%)",
+                    backgroundSize: "200% 100%",
                     border: "1px solid rgba(0,0,0,0.1)",
                     position: "relative"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.animation = "spinGradient 1.2s ease-in-out";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.animation = "none";
-                    // Force a reflow to ensure animation can trigger again
-                    void e.currentTarget.offsetWidth;
                   }}
                 >
                   <MapPin size={20} className="relative z-10" />
                   <span className="relative z-10">Ver en Google Maps</span>
                 </a>
                 <style jsx global>{`
-                  @keyframes spinGradient {
-                    0% { background-position: 0% 50%; }
-                    100% { background-position: 100% 50%; }
+                  @keyframes spinAndReturn {
+                    0% { 
+                      background-position: 0% 0%;
+                    }
+                    20% { 
+                      background-position: 100% 0%;
+                    }
+                    40% { 
+                      background-position: 200% 0%;
+                    }
+                    60% {
+                      background-position: 100% 0%;
+                    }
+                    100% { 
+                      background-position: 0% 0%;
+                    }
+                  }
+                  .google-maps-btn {
+                    background-position: 0% 0%;
+                    transition: transform 0.3s ease;
                   }
                   .google-maps-btn:hover {
-                    animation: spinGradient 1.2s ease-in-out;
+                    animation: spinAndReturn 0.85s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                  }
+                  /* Force animation to reset when not hovering */
+                  .google-maps-btn:not(:hover) {
+                    animation: none;
+                    background-position: 0% 0%;
                   }
                 `}</style>
               </div>
@@ -523,8 +537,8 @@ export default function Home() {
                 isLink={false} 
               />
             </CardContact>
-          </div>
-          
+            </div>
+            
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
             <CardContact 
               icon={{ 
@@ -599,7 +613,7 @@ export default function Home() {
                 <a href="https://www.linkedin.com/help/linkedin/answer/a702683" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 transition-colors">
                   <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
+                </svg>
                 </a>
               </div>
             </div>
@@ -679,8 +693,8 @@ export default function Home() {
           
                       <div className="border-t border-white/20 mt-12 pt-8 text-center">
               <p className="opacity-70">
-                © {new Date().getFullYear()} Blindando Sueños. Todos los derechos reservados.
-              </p>
+              © {new Date().getFullYear()} Blindando Sueños. Todos los derechos reservados.
+            </p>
           </div>
         </div>
       </footer>

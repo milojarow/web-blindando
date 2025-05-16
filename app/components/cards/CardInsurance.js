@@ -75,7 +75,7 @@ export default function CardInsurance({ id, title, description, iconName, benefi
                 size={32} 
                 color={color}
                 className="transition-transform duration-300 group-hover:scale-110"
-              />
+            />
             )}
           </div>
         </div>
@@ -102,18 +102,18 @@ export default function CardInsurance({ id, title, description, iconName, benefi
                     className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0 rounded-full flex items-center justify-center transition-colors duration-300"
                     style={{ backgroundColor: `${color}15` }}
                   >
-                    <svg
+                  <svg
                       className="h-3 w-3"
-                      style={{ color }}
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                    style={{ color }}
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                   </div>
                   <span className="text-gray-600">{benefit}</span>
                 </li>
