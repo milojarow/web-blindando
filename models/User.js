@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import clientPromise from "@/libs/mongo";
+import clientPromise from "../libs/mongo";
 import { ObjectId } from "mongodb";
 
 // Mongoose Schema for NextAuth
