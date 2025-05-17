@@ -46,27 +46,30 @@ export default function Header() {
         </Link>
 
         {/* Mobile Menu Button */}
-        <button 
-          className={`lg:hidden flex items-center justify-center relative z-50 ${
-            isMenuOpen ? 'w-12 h-12 rounded-full bg-gray-50/90' : ''
-          }`}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor" 
-            className="w-6 h-6 text-text-light"
+        <div className="lg:hidden relative">
+          <button 
+            className="w-10 h-10 flex items-center justify-center relative z-50"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M4 6h16M4 12h16M4 18h16" 
-            />
-          </svg>
-        </button>
+            {isMenuOpen && (
+              <div className="absolute inset-0 bg-gray-50/90 rounded-full" />
+            )}
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor" 
+              className="w-6 h-6 text-text-light relative z-10"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M4 6h16M4 12h16M4 18h16" 
+              />
+            </svg>
+          </button>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-6">
