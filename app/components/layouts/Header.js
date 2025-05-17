@@ -108,60 +108,58 @@ export default function Header() {
         {isMenuOpen && (
           <div className="fixed inset-0 backdrop-blur-lg bg-base-300/95 z-40 lg:hidden">
             {/* Menu items positioned in quadrant 3 relative to hamburger menu */}
-            <nav className="absolute right-0 top-0 w-full h-screen flex items-start justify-end">
-              <div className="relative w-full h-full">
-                {/* Inicio - positioned along arc */}
-                <Link 
-                  href="/#inicio" 
-                  className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-5 py-2 rounded-full"
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    right: 'calc(100% - 180px)',
-                    top: '100px',
-                  }}
-                >
-                  Inicio
-                </Link>
+            <nav className="absolute right-0 top-0 w-full h-screen">
+              {/* Inicio - top green oval in the drawing */}
+              <Link 
+                href="/#inicio" 
+                className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-4 py-2 rounded-full"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  right: '65px',
+                  top: '70px',
+                }}
+              >
+                Inicio
+              </Link>
 
-                {/* Seguros - positioned along arc */}
-                <Link 
-                  href="/#seguros" 
-                  className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-5 py-2 rounded-full"
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    right: 'calc(100% - 130px)',
-                    top: '170px',
-                  }}
-                >
-                  Seguros
-                </Link>
+              {/* Seguros - second green oval */}
+              <Link 
+                href="/#seguros" 
+                className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-4 py-2 rounded-full"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  right: '50px',
+                  top: '130px',
+                }}
+              >
+                Seguros
+              </Link>
 
-                {/* Nosotros - positioned along arc */}
-                <Link 
-                  href="/#nosotros" 
-                  className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-5 py-2 rounded-full"
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    right: 'calc(100% - 105px)',
-                    top: '240px',
-                  }}
-                >
-                  Nosotros
-                </Link>
+              {/* Nosotros - third green oval */}
+              <Link 
+                href="/#nosotros" 
+                className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-4 py-2 rounded-full"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  right: '35px',
+                  top: '190px',
+                }}
+              >
+                Nosotros
+              </Link>
 
-                {/* Contacto - positioned along arc */}
-                <Link 
-                  href="/#contacto" 
-                  className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-5 py-2 rounded-full"
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    right: 'calc(100% - 120px)',
-                    top: '310px',
-                  }}
-                >
-                  Contacto
-                </Link>
-              </div>
+              {/* Contacto - bottom green oval */}
+              <Link 
+                href="/#contacto" 
+                className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-4 py-2 rounded-full"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  right: '55px',
+                  top: '250px',
+                }}
+              >
+                Contacto
+              </Link>
             </nav>
           </div>
         )}
