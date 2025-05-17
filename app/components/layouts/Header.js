@@ -106,51 +106,62 @@ export default function Header() {
 
         {/* Mobile Navigation Overlay */}
         {isMenuOpen && (
-          <div className="fixed inset-0 backdrop-blur-lg bg-base-300/95 z-40 lg:hidden flex items-center justify-center">
-            <nav className="relative w-full h-full flex items-center justify-center">
-              {/* Radial Menu Items */}
-              <Link 
-                href="/#inicio" 
-                className="absolute text-text-dark text-xl font-medium bg-gray-50/90 px-6 py-3 rounded-full transform -translate-y-32"
-                onClick={() => setIsMenuOpen(false)}
-                style={{ left: 'calc(50% - 60px)' }}
-              >
-                Inicio
-              </Link>
-              <Link 
-                href="/#seguros" 
-                className="absolute text-text-dark text-xl font-medium bg-gray-50/90 px-6 py-3 rounded-full transform translate-x-28 -translate-y-16"
-                onClick={() => setIsMenuOpen(false)}
-                style={{ left: 'calc(50% - 60px)' }}
-              >
-                Seguros
-              </Link>
-              <Link 
-                href="/#nosotros" 
-                className="absolute text-text-dark text-xl font-medium bg-gray-50/90 px-6 py-3 rounded-full transform translate-x-28 translate-y-16"
-                onClick={() => setIsMenuOpen(false)}
-                style={{ left: 'calc(50% - 60px)' }}
-              >
-                Nosotros
-              </Link>
-              <Link 
-                href="/#contacto" 
-                className="absolute text-text-dark text-xl font-medium bg-gray-50/90 px-6 py-3 rounded-full transform translate-y-32"
-                onClick={() => setIsMenuOpen(false)}
-                style={{ left: 'calc(50% - 60px)' }}
-              >
-                Contacto
-              </Link>
-              {/* Login button temporarily hidden
-              <Button 
-                href="/api/auth/signin" 
-                variant="primary"
-                className="mt-4"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Iniciar Sesión
-              </Button>
-              */}
+          <div className="fixed inset-0 backdrop-blur-lg bg-base-300/95 z-40 lg:hidden">
+            {/* Menu items positioned in quadrant 3 relative to hamburger menu */}
+            <nav className="absolute right-0 top-0 w-full h-screen flex items-start justify-end">
+              <div className="relative w-full h-full">
+                {/* Inicio - positioned along arc */}
+                <Link 
+                  href="/#inicio" 
+                  className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-5 py-2 rounded-full"
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    right: 'calc(100% - 180px)',
+                    top: '100px',
+                  }}
+                >
+                  Inicio
+                </Link>
+
+                {/* Seguros - positioned along arc */}
+                <Link 
+                  href="/#seguros" 
+                  className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-5 py-2 rounded-full"
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    right: 'calc(100% - 130px)',
+                    top: '170px',
+                  }}
+                >
+                  Seguros
+                </Link>
+
+                {/* Nosotros - positioned along arc */}
+                <Link 
+                  href="/#nosotros" 
+                  className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-5 py-2 rounded-full"
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    right: 'calc(100% - 105px)',
+                    top: '240px',
+                  }}
+                >
+                  Nosotros
+                </Link>
+
+                {/* Contacto - positioned along arc */}
+                <Link 
+                  href="/#contacto" 
+                  className="absolute text-text-dark text-lg font-medium bg-gray-50/90 px-5 py-2 rounded-full"
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    right: 'calc(100% - 120px)',
+                    top: '310px',
+                  }}
+                >
+                  Contacto
+                </Link>
+              </div>
             </nav>
           </div>
         )}
