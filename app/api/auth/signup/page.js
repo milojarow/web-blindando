@@ -1,21 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 export default function SignUpPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const emailFromQuery = searchParams.get('email');
+  
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    email: emailFromQuery || '',
     password: '',
     confirmPassword: ''
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -303,7 +307,18 @@ export default function SignUpPage() {
           <div>
             <button
               type="button"
-              onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+              onClick={() => {
+                try {
+                  // Import the signIn function dynamically
+                  import('next-auth/react').then(({ signIn }) => {
+                    signIn('google', { callbackUrl: '/dashboard' });
+                  }).catch(error => {
+                    console.error('Error loading signIn function:', error);
+                  });
+                } catch (error) {
+                  console.error('Error in Google sign-in:', error);
+                }
+              }}
               className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

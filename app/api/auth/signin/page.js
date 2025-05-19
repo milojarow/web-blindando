@@ -39,11 +39,16 @@ export default function SignInPage() {
 
       if (result?.error) {
         if (result.error === 'Usuario no encontrado') {
-          setError('No existe una cuenta con este correo electrónico');
+          // Usuario no existe, mostrar mensaje y sugerir registro
+          setError('El usuario no se encuentra registrado, favor de registrarse');
+          // Redirigir a la página de registro después de un breve delay
+          setTimeout(() => {
+            router.push(`/api/auth/signup?email=${encodeURIComponent(email)}`);
+          }, 2000);
         } else if (result.error === 'Contraseña incorrecta') {
           setError('La contraseña ingresada es incorrecta');
         } else if (result.error === 'Email no verificado. Por favor, verifica tu email.') {
-          // Special handling for unverified email
+          // Manejo de email no verificado (código existente)
           setError('Tu email no ha sido verificado');
           setMessage('Hemos enviado un enlace de verificación a tu correo electrónico. Por favor verifica tu cuenta para continuar.');
           
