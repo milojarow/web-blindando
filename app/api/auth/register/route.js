@@ -1,6 +1,8 @@
+// app/api/auth/register/route.js (updated)
 import connectMongo from "../../../../libs/mongoose";
 import User from "../../../../models/User";
 import { hash } from "bcrypt";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
@@ -8,14 +10,14 @@ export async function POST(request) {
     
     // Input validation
     if (!name || !email || !password) {
-      return Response.json(
+      return NextResponse.json(
         { success: false, error: "Nombre, email y contraseña son requeridos" },
         { status: 400 }
       );
     }
     
     if (password.length < 8) {
-      return Response.json(
+      return NextResponse.json(
         { success: false, error: "La contraseña debe tener al menos 8 caracteres" },
         { status: 400 }
       );
@@ -28,7 +30,7 @@ export async function POST(request) {
     const existingUser = await User.findOne({ email: email.toLowerCase() });
     
     if (existingUser) {
-      return Response.json(
+      return NextResponse.json(
         { success: false, error: "Ya existe una cuenta con este correo electrónico" },
         { status: 409 }
       );
@@ -43,16 +45,29 @@ export async function POST(request) {
       email: email.toLowerCase(),
       password: hashedPassword,
       role: "user", // Default role
-      emailVerified: null,
+      emailVerified: null, // Not verified yet
     });
+    
+    // Send verification email
+    const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/verify-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email.toLowerCase() }),
+    });
+
+    if (!response.ok) {
+      console.error('Error sending verification email');
+    }
     
     // Remove password from response
     const user = newUser.toObject();
     delete user.password;
     
-    return Response.json({
+    return NextResponse.json({
       success: true,
-      message: "Usuario creado correctamente",
+      message: "Usuario creado correctamente. Por favor, verifica tu email para activar tu cuenta.",
       user: {
         id: user._id,
         name: user.name,
@@ -61,7 +76,7 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("Error creating user:", error);
-    return Response.json(
+    return NextResponse.json(
       { 
         success: false, 
         error: "Error al crear el usuario. Por favor, intenta nuevamente." 
@@ -69,4 +84,4 @@ export async function POST(request) {
       { status: 500 }
     );
   }
-} 
+}

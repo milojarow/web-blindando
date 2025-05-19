@@ -43,6 +43,19 @@ export default function SignInPage() {
           setError('No existe una cuenta con este correo electrónico');
         } else if (result.error === 'Contraseña incorrecta') {
           setError('La contraseña ingresada es incorrecta');
+        } else if (result.error === 'Email no verificado. Por favor, verifica tu email.') {
+          // Special handling for unverified email
+          setError('Tu email no ha sido verificado');
+          setMessage('Hemos enviado un enlace de verificación a tu correo electrónico. Por favor verifica tu cuenta para continuar.');
+          
+          // Send verification email
+          await fetch('/api/auth/verify-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+          });
         } else {
           setError(result.error);
         }

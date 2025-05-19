@@ -1,7 +1,7 @@
+// auth.js (updated)
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import ResendProvider from "next-auth/providers/resend";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "./libs/mongo";
 import connectMongo from "./libs/mongoose";
@@ -38,6 +38,11 @@ const config = {
         if (!passwordMatch) {
           throw new Error("Contraseña incorrecta");
         }
+
+        // Check if email is verified
+        if (!user.emailVerified) {
+          throw new Error("Email no verificado. Por favor, verifica tu email.");
+        }
         
         return {
           id: user._id.toString(),
@@ -47,46 +52,6 @@ const config = {
           role: user.role,
         };
       }
-    }),
-    
-    // Resend provider for magic link authentication
-    ResendProvider({
-      apiKey: process.env.RESEND_API_KEY,
-      from: process.env.RESEND_FROM,
-      name: "Email Link",
-      server: {
-        host: process.env.NEXTAUTH_URL,
-        port: 443,
-        auth: {
-          user: '',
-          pass: '',
-        },
-      },
-      sendVerificationRequest: async ({ identifier, url, provider }) => {
-        // Custom function to send the verification request
-        // We'll use our own API route to handle this
-        // Determine the base URL (works in both dev and production)
-        const baseUrl = process.env.NEXTAUTH_URL || 
-                       (typeof window !== 'undefined' ? window.location.origin : 'https://blindandosuenos.com');
-        
-        const response = await fetch(`${baseUrl}/api/auth/resend`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: identifier,
-            url,
-            // Extract host without protocol
-            host: new URL(baseUrl).host,
-          }),
-        });
-
-        if (!response.ok) {
-          const error = await response.json();
-          throw new Error(`Error sending magic link: ${error.error}`);
-        }
-      },
     }),
     
     // Google OAuth provider
@@ -105,6 +70,7 @@ const config = {
   adapter: MongoDBAdapter(clientPromise),
   pages: {
     signIn: '/api/auth/signin',
+    verifyRequest: '/api/auth/verify-request', // Add a verification page
   },
   session: {
     strategy: "jwt",
@@ -134,4 +100,4 @@ const config = {
   },
 };
 
-export const { handlers, signIn, signOut, auth } = NextAuth(config); 
+export const { handlers, signIn, signOut, auth } = NextAuth(config);

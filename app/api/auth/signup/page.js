@@ -14,6 +14,7 @@ export default function SignUpPage() {
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -79,8 +80,8 @@ export default function SignUpPage() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Registration successful - redirect to signin page
-        router.push('/api/auth/signin');
+        // Registration successful - show verification message
+        setIsSuccess(true);
       } else {
         // Handle registration error
         setError(data.error || 'Error al crear la cuenta');
@@ -92,6 +93,65 @@ export default function SignUpPage() {
       setIsLoading(false);
     }
   };
+
+  if (isSuccess) {
+    return (
+      <div className="min-h-screen bg-base-200 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg text-center">
+          <div>
+            <Link href="/" className="inline-block">
+              <Image
+                src="/logo.png"
+                alt="Blindando Sueños Logo"
+                width={80}
+                height={80}
+                className="mx-auto h-16 w-auto"
+              />
+            </Link>
+            <h2 className="mt-6 text-3xl font-bold text-primary">
+              ¡Registro Exitoso!
+            </h2>
+            <div className="mt-4 text-green-500 bg-green-50 p-4 rounded-md">
+              <p className="font-medium">Hemos enviado un correo de verificación a:</p>
+              <p className="font-bold mt-2">{formData.email}</p>
+            </div>
+            <p className="mt-4 text-gray-600">
+              Por favor, revisa tu correo electrónico y haz clic en el enlace de verificación para activar tu cuenta.
+            </p>
+          </div>
+          
+          <div className="mt-8 space-y-4">
+            <button
+              onClick={() => router.push('/api/auth/signin')}
+              className="w-full px-4 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+            >
+              Ir a Iniciar Sesión
+            </button>
+            <button
+              onClick={async () => {
+                try {
+                  await fetch('/api/auth/verify-email', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: formData.email }),
+                  });
+                  alert('Hemos enviado un nuevo correo de verificación a tu email.');
+                } catch (error) {
+                  console.error('Error:', error);
+                  alert('Ocurrió un error al enviar el correo de verificación. Por favor, intenta nuevamente.');
+                }
+              }}
+              className="w-full px-4 py-3 bg-white text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+            >
+              Reenviar Correo de Verificación
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-base-200 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
@@ -228,6 +288,31 @@ export default function SignUpPage() {
               ) : (
                 'Crear cuenta'
               )}
+            </button>
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">O continúa con</span>
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="button"
+              onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+            >
+              <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.766 12.2764C23.766 11.4607 23.6999 10.6406 23.5588 9.83807H12.24V14.4591H18.7217C18.4528 15.9494 17.5885 17.2678 16.323 18.1056V21.1039H20.19C22.4608 19.0139 23.766 15.9274 23.766 12.2764Z" fill="#4285F4"/>
+                <path d="M12.2401 24.0008C15.4766 24.0008 18.2059 22.9382 20.1945 21.1039L16.3276 18.1055C15.2517 18.8375 13.8627 19.252 12.2445 19.252C9.11388 19.252 6.45934 17.1399 5.50679 14.3003H1.5166V17.3912C3.55371 21.4434 7.7029 24.0008 12.2401 24.0008Z" fill="#34A853"/>
+                <path d="M5.50253 14.3003C4.99987 12.8099 4.99987 11.1961 5.50253 9.70575V6.61481H1.51233C-0.18551 10.0056 -0.18551 14.0004 1.51233 17.3912L5.50253 14.3003Z" fill="#FBBC04"/>
+                <path d="M12.2401 4.74966C13.9509 4.7232 15.6044 5.36697 16.8434 6.54867L20.2695 3.12262C18.1001 1.0855 15.2208 -0.034466 12.2401 0.000808666C7.7029 0.000808666 3.55371 2.55822 1.5166 6.61481L5.50679 9.70575C6.45555 6.86173 9.11388 4.74966 12.2401 4.74966Z" fill="#EA4335"/>
+              </svg>
+              Registrarse con Google
             </button>
           </div>
         </form>

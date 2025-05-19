@@ -21,6 +21,8 @@ const UserSchema = new mongoose.Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+    verificationToken: String,
+    verificationTokenExpiresAt: Date,
     accounts: [
       {
         type: mongoose.Schema.Types.ObjectId,
