@@ -12,7 +12,6 @@ export default function SignInPage() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isMagicLinkLoading, setIsMagicLinkLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState('');
   const router = useRouter();
 
@@ -73,35 +72,7 @@ export default function SignInPage() {
     }
   };
 
-  const handleMagicLinkSignIn = async () => {
-    if (!email || !email.includes('@')) {
-      setError('Por favor ingresa un correo electrónico válido');
-      return;
-    }
 
-    setError('');
-    setMessage('');
-    setIsMagicLinkLoading(true);
-
-    try {
-      const result = await signIn('resend', {
-        email,
-        redirect: false,
-        csrfToken,
-      });
-
-      if (result?.error) {
-        setError(result.error);
-      } else {
-        setMessage('¡Enlace mágico enviado! Revisa tu correo electrónico para iniciar sesión.');
-      }
-    } catch (error) {
-      console.error('Magic link error:', error);
-      setError('Ocurrió un error al enviar el enlace mágico. Intenta nuevamente.');
-    } finally {
-      setIsMagicLinkLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-base-200 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
@@ -242,7 +213,7 @@ export default function SignInPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-3">
+          <div>
             <button
               type="button"
               onClick={() => signIn('google', { callbackUrl: '/dashboard', csrfToken })}
@@ -256,30 +227,6 @@ export default function SignInPage() {
                 <path d="M12.2401 4.74966C13.9509 4.7232 15.6044 5.36697 16.8434 6.54867L20.2695 3.12262C18.1001 1.0855 15.2208 -0.034466 12.2401 0.000808666C7.7029 0.000808666 3.55371 2.55822 1.5166 6.61481L5.50679 9.70575C6.45555 6.86173 9.11388 4.74966 12.2401 4.74966Z" fill="#EA4335"/>
               </svg>
               Iniciar sesión con Google
-            </button>
-
-            <button
-              type="button"
-              onClick={handleMagicLinkSignIn}
-              disabled={isMagicLinkLoading || !csrfToken}
-              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {isMagicLinkLoading ? (
-                <span className="flex items-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Enviando enlace...
-                </span>
-              ) : (
-                <>
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                  </svg>
-                  Iniciar sesión con enlace mágico
-                </>
-              )}
             </button>
           </div>
         </form>
