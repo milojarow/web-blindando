@@ -1,14 +1,6 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
-import ErrorBoundary from './components/layouts/ErrorBoundary';
-
+// Placeholder: add auth/session providers (e.g., NextAuth) when user system is implemented
 export function Providers({ children }) {
-  return (
-    <SessionProvider>
-      <ErrorBoundary>
-        {children}
-      </ErrorBoundary>
-    </SessionProvider>
-  );
+  return children;
 } 
